@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="pandoracaralarmsystem"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <bridge-type id="bridge">
+        <label>Bridge for Pandora Car Alarm System API requests</label>
+        <description>This bridge requires for API requests</description>
+<!--        <config-description-ref uri="bridge-type:pandoracaralarmsystem:bridge"/>-->
+
+        <config-description uri="bridge-type:pandoracaralarmsystem:bridge">
+            <parameter name="login" type="text" required="true">
+                <context>login</context>
+                <label>Login</label>
+                <description>Login to access the api</description>
+            </parameter>
+            <parameter name="password" type="text" required="true">
+                <context>password</context>
+                <label>Password</label>
+                <description>Password to access the api</description>
+            </parameter>
+            <parameter name="pollingInterval" type="integer" unit="s" min="15">
+                <label>Polling Interval</label>
+                <description>Interval the device is polled in sec.</description>
+                <default>180</default>
+                <advanced>true</advanced>
+            </parameter>
+            <parameter name="apiUrl" type="text">
+                <label>API url</label>
+                <description>Pandora API url</description>
+                <default>https://pro.p-on.ru/api</default>
+                <advanced>true</advanced>
+            </parameter>
+        </config-description>
+
+    </bridge-type>
+</thing:thing-descriptions>

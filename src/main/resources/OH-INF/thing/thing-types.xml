@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="pandoracaralarmsystem"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="thing">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="bridge" />
+		</supported-bridge-type-refs>
+
+		<label>Pandora Car Alarm System</label>
+		<description>Thing for Pandora Car Alarm System Binding</description>
+		<channel-groups>
+			<channel-group id="device" typeId="device"/>
+			<channel-group id="telemetry" typeId="telemetry"/>
+			<channel-group id="states" typeId="states"/>
+		</channel-groups>
+
+		<config-description uri="thing-type:pandoracaralarmsystem:thing">
+			<parameter name="deviceId" type="text" required="true">
+				<context>deviceId</context>
+				<label>System ID</label>
+				<description>System ID of your device</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+</thing:thing-descriptions>
