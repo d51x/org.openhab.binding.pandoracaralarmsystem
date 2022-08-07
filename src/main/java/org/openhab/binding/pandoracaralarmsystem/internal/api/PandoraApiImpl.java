@@ -166,9 +166,6 @@ public class PandoraApiImpl implements PandoraApi {
         handler.updateStats(response);
     }
 
-    private void setCookie(Request request, String cookie) {
-        request.header(HttpHeader.COOKIE, cookie);
-    }
     private void setHeaders(Request request) {
         request.timeout(60, TimeUnit.SECONDS);
         request.header(HttpHeader.USER_AGENT, null);

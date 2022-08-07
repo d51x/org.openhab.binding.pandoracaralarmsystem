@@ -20,10 +20,10 @@
                 <label>Password</label>
                 <description>Password to access the api</description>
             </parameter>
-            <parameter name="pollingInterval" type="integer" unit="s" min="15">
+            <parameter name="pollingInterval" type="integer" unit="s" min="5">
                 <label>Polling Interval</label>
                 <description>Interval the device is polled in sec.</description>
-                <default>180</default>
+                <default>30</default>
                 <advanced>true</advanced>
             </parameter>
             <parameter name="apiUrl" type="text">
