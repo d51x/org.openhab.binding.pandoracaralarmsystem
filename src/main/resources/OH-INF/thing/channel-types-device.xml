@@ -8,36 +8,42 @@
         <item-type>String</item-type>
         <label>Device Name</label>
         <description>The Device Name of your System ID</description>
+        <category>text</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="model">
         <item-type>String</item-type>
         <label>Model</label>
         <description>The Model of Pandora Car Alarm System</description>
+        <category>text</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="firmware">
         <item-type>String</item-type>
         <label>Firmware</label>
         <description>The Firmware of Pandora Car Alarm System</description>
+        <category>text</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="status">		<!-- telemetry_online -->
-        <item-type>String</item-type>
+        <item-type>Switch</item-type>
         <label>Device Status</label>
         <description>The Status of Pandora Car Alarm System</description>
+        <category>status</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="balance">
         <item-type>String</item-type>
         <label>Device Balance</label>
         <description>The Balance of Pandora Car Alarm System</description>
-        <state readOnly="true"/>
+        <category>piggybank</category>
+        <state pattern="%s %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="gsm_level" >
         <item-type>Number</item-type>
         <label>GSM Level</label>
         <description>The GSM Level of Pandora Car Alarm System</description>
+        <category>qualityofservice</category>
         <state readOnly="true"/>
     </channel-type>
 

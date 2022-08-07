@@ -21,8 +21,10 @@ import org.openhab.binding.pandoracaralarmsystem.internal.api.PandoraApiFactory;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.record.StatRecord;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiDevicesResponse;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiUpdateResponse;
+import org.openhab.core.library.items.ContactItem;
 import org.openhab.core.library.types.DecimalType;
 import org.openhab.core.library.types.OnOffType;
+import org.openhab.core.library.types.OpenClosedType;
 import org.openhab.core.library.types.StringType;
 import org.openhab.core.thing.*;
 import org.openhab.core.thing.binding.BaseBridgeHandler;
@@ -291,12 +293,12 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
             mapChannelsState.put(CHANNEL_STATES_SOUND_ALERT,  OnOffType.from(checkBit(bitStates, STATE_SOUND_ALERT)));
             mapChannelsState.put(CHANNEL_STATES_SOUND_MAIN,  OnOffType.from(checkBit(bitStates, STATE_SOUND_MAIN)));
 
-            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_LEFT,  OnOffType.from(checkBit(bitStates, STATE_DOOR_FRONT_LEFT)));
-            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_RIGHT,  OnOffType.from(checkBit(bitStates, STATE_DOOR_FRONT_RIGHT)));
-            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_LEFT,  OnOffType.from(checkBit(bitStates, STATE_DOOR_BACK_LEFT)));
-            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_RIGHT,  OnOffType.from(checkBit(bitStates, STATE_DOOR_BACK_RIGHT)));
-            mapChannelsState.put(CHANNEL_STATES_TRUNK,  OnOffType.from(checkBit(bitStates, STATE_TRUNK)));
-            mapChannelsState.put(CHANNEL_STATES_HOOD,  OnOffType.from(checkBit(bitStates, STATE_HOOD)));
+            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_LEFT, checkBit(bitStates, STATE_DOOR_FRONT_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_RIGHT, checkBit(bitStates, STATE_DOOR_FRONT_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_LEFT, checkBit(bitStates, STATE_DOOR_BACK_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_RIGHT, checkBit(bitStates, STATE_DOOR_BACK_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_STATES_TRUNK, checkBit(bitStates, STATE_TRUNK) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_STATES_HOOD, checkBit(bitStates, STATE_HOOD) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
 
             mapChannelsState.put(CHANNEL_STATES_HANDBRAKE,  OnOffType.from(checkBit(bitStates, STATE_HANDBRAKE)));
             mapChannelsState.put(CHANNEL_STATES_BRAKES,  OnOffType.from(checkBit(bitStates, STATE_BRAKES)));
@@ -313,7 +315,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
         });
     }
 
-    private boolean checkBit(Long value, int bit) {
+    private Boolean checkBit(Long value, int bit) {
         return  ((value & (1L << bit)) != 0);
     }
 

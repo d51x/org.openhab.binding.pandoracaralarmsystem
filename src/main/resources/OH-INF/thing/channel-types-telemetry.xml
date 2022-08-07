@@ -5,52 +5,60 @@
                           xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
     <channel-type id="voltage">
-        <item-type>Number</item-type>
+        <item-type>Number:Dimensionless</item-type>
         <label>Battery Voltage</label>
         <description>The Battery Voltage of the Device</description>
-        <state readOnly="true"/>
+        <category>batterylevel</category>
+        <state pattern="%.1f" readOnly="true"/>
     </channel-type>
     <channel-type id="engine_rpm" advanced="true">
-        <item-type>Number</item-type>
+        <item-type>Number:Dimensionless</item-type>
         <label>Engine RPM</label>
         <description>The Engine RPM of the Device</description>
+        <category>pressure</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="engine_temp">
         <item-type>Number:Temperature</item-type>
         <label>Engine Temperature</label>
         <description>The Engine Temperature of the Device</description>
-        <state readOnly="true"/>
+        <category>temperature</category>
+        <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="cabin_temp">
         <item-type>Number:Temperature</item-type>
         <label>Cabin Temperature</label>
         <description>The Cabin Temperature of the Device</description>
-        <state readOnly="true"/>
+        <category>temperature</category>
+        <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="outer_temp" advanced="true">
         <item-type>Number:Temperature</item-type>
         <label>Outer Temperature</label>
         <description>The Outer Temperature of the Device</description>
-        <state readOnly="true"/>
+        <category>temperature</category>
+        <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="fuel">
         <item-type>Number</item-type>
         <label>Fuel Remain</label>
         <description>The Fuel Remain of the Device</description>
-        <state readOnly="true"/>
+        <category>oil</category>
+        <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="speed" advanced="true">
-        <item-type>Number</item-type>
+        <item-type>Number:Dimensionless</item-type>
         <label>Speed</label>
         <description>The Speed of the Device</description>
-        <state readOnly="true"/>
+        <category>pressure</category>
+        <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="mileage" advanced="true">
-        <item-type>Number</item-type>
+        <item-type>Number:Dimensionless</item-type>
         <label>Mileage</label>
         <description>The Mileage of the Device</description>
-        <state readOnly="true"/>
+        <category>line</category>
+        <state pattern="%d" readOnly="true"/>
     </channel-type>
 
 
