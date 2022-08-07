@@ -258,7 +258,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
             //v.update(CHANNEL_DEVICE_STATUS,  OnOffType.from(stat.online == 1));
             mapChannelsState.put(CHANNEL_DEVICE_BALANCE,  new StringType(stat.balance.value));
             mapChannelsState.put(CHANNEL_DEVICE_GSM_LEVEL,  new DecimalType(stat.gsmLevel.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_VOLTAGE,  new DecimalType(stat.voltage.longValue()));
+            mapChannelsState.put(CHANNEL_TELEMETRY_VOLTAGE,  new DecimalType(stat.voltage.floatValue()));
             mapChannelsState.put(CHANNEL_TELEMETRY_ENGINE_RPM,  new DecimalType(stat.engineRPM.longValue() * 10));
             mapChannelsState.put(CHANNEL_TELEMETRY_ENGINE_TEMPERATURE,  new DecimalType(stat.engineTemperature.longValue()));
             mapChannelsState.put(CHANNEL_TELEMETRY_CABIN_TEMPERATURE,  new DecimalType(stat.cabinTemperature.longValue()));
