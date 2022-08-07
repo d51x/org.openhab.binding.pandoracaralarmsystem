@@ -120,6 +120,8 @@ public class PandoraCarAlarmSystemBindingConstants {
      * The constant CHANNEL_TELEMETRY_MILEAGE.
      */
     public static final String CHANNEL_TELEMETRY_MILEAGE = CHANNEL_GROUP_TELEMETRY + "#mileage";
+    public static final String CHANNEL_TELEMETRY_LATITUDE = CHANNEL_GROUP_TELEMETRY + "#lat";
+    public static final String CHANNEL_TELEMETRY_LONGITUDE = CHANNEL_GROUP_TELEMETRY + "#lon";
     /**
      * The constant CHANNEL_TELEMETRY_STATE_LOCKED.
      */

@@ -50,13 +50,13 @@ public class StatRecord {
      * The Lat.
      */
     @SerializedName("x")
-    public Long lat;
+    public Float lat;
 
     /**
      * The Lon.
      */
     @SerializedName("y")
-    public Long lon;
+    public Float lon;
 
     /**
      * The Bit states.

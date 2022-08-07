@@ -60,6 +60,18 @@
         <category>line</category>
         <state pattern="%d" readOnly="true"/>
     </channel-type>
-
-
+    <channel-type id="lat" advanced="true">
+        <item-type>Number:Dimensionless</item-type>
+        <label>Latitude</label>
+        <description>The Latitude (coordinates)</description>
+        <category>line</category>
+        <state pattern="%.6f" readOnly="true"/>
+    </channel-type>
+    <channel-type id="lon" advanced="true">
+        <item-type>Number:Dimensionless</item-type>
+        <label>Longitude</label>
+        <description>The Longitude (coordinates)</description>
+        <category>line</category>
+        <state pattern="%.6f" readOnly="true"/>
+    </channel-type>
 </thing:thing-descriptions>

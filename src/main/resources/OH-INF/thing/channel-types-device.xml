@@ -50,6 +50,7 @@
         <item-type>Switch</item-type>
         <label>Movement</label>
         <description>The Movement Status of Pandora Car Alarm System</description>
+        <category>if:carbon:movement</category>
         <state readOnly="true"/>
     </channel-type>
 </thing:thing-descriptions>
