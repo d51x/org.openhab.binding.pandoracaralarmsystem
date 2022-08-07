@@ -89,6 +89,7 @@ public class PandoraApiImpl implements PandoraApi {
 
     private String sessionId = "";
     private Instant lastAuthTimestamp = Instant.now();
+    private Instant lastGetDevicesTimestamp = Instant.EPOCH;
 
     private Long expires = Date.from(Instant.now()).getTime();
 
@@ -145,10 +146,6 @@ public class PandoraApiImpl implements PandoraApi {
     public void initialize() throws ApiException {
         // AUTH
         auth();
-        // get devices
-//        List<ApiDevicesResponse> apiDevicesResponseList = getDevices();
-//        apiDevicesResponseList.forEach(handler::updateDeviceInfo);
-
         update();
     }
 
@@ -165,8 +162,10 @@ public class PandoraApiImpl implements PandoraApi {
 
         prolongSession();
 
-        List<ApiDevicesResponse> apiDevicesResponseList = getDevices();
-        apiDevicesResponseList.forEach(handler::updateDeviceInfo);
+        if (Instant.now().isAfter(lastGetDevicesTimestamp.plus(GET_DEVICES_POLLING_INTERVAL_MIN, ChronoUnit.MINUTES))) {
+            List<ApiDevicesResponse> apiDevicesResponseList = getDevices();
+            apiDevicesResponseList.forEach(handler::updateDeviceInfo);
+        }
 
         ApiUpdateResponse response = getUpdates();
         handler.updateStats(response);
@@ -338,13 +337,14 @@ public class PandoraApiImpl implements PandoraApi {
         if (handler.pandoraCASConfiguration == null) {
             throw new ApiException("Configuration is null");
         }
-        logger.debug("getDevices");
+        logger.info("getDevices");
         try {
             ApiResponse response = sendGetRequest(API_PATH_DEVICES, "", getSessionId());
             if (response.httpCode == 200) {
                 Type listType = new TypeToken<ArrayList<ApiDevicesResponse>>(){}.getType();
                 List<ApiDevicesResponse> apiDevicesResponseList = new Gson().fromJson(response.response, listType);
                 if (!apiDevicesResponseList.isEmpty()) {
+                    lastGetDevicesTimestamp = Instant.now();
                     return apiDevicesResponseList;
                 } else {
                     logger.error("getDevices: Pandora API (devices) error: device list is null");
