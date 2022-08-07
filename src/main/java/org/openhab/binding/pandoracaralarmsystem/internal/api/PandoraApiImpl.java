@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -87,6 +88,8 @@ public class PandoraApiImpl implements PandoraApi {
     protected final PandoraCarAlarmSystemBridgeHandler handler;
 
     private String sessionId = "";
+    private Instant lastAuthTimestamp = Instant.now();
+
     private Long expires = Date.from(Instant.now()).getTime();
 
     /**
@@ -159,6 +162,9 @@ public class PandoraApiImpl implements PandoraApi {
             logger.warn("Session expired, try authorize...");
             auth();
         }
+
+        prolongSession();
+
         List<ApiDevicesResponse> apiDevicesResponseList = getDevices();
         apiDevicesResponseList.forEach(handler::updateDeviceInfo);
 
@@ -288,6 +294,8 @@ public class PandoraApiImpl implements PandoraApi {
 
         logger.debug("auth for {}", formData);
 
+        resetSession();
+
         try {
             ApiResponse response = sendPostRequest(API_PATH_AUTH, formData.toString());
             if (response.httpCode == 200) {
@@ -296,14 +304,13 @@ public class PandoraApiImpl implements PandoraApi {
                 authResponse.expires = response.expires;
                 logger.debug("auth: sid: {}, expires: {}", authResponse.sessionId, authResponse.expires);
                 setSession(authResponse.sessionId, authResponse.expires);
+                lastAuthTimestamp = Instant.now();
                 return authResponse;
             } else {
-                resetSession();
                 throw processErrorResponse("auth", response);
             }
         } catch (JsonSyntaxException e) {
             handler.updateThingStatus(ThingStatus.OFFLINE);
-            resetSession();
             throw new ApiException("JsonSyntaxException:{}", e);
         }
     }
@@ -405,5 +412,13 @@ public class PandoraApiImpl implements PandoraApi {
         handler.update(CHANNEL_DEVICE_NAME, new StringType(devicesResponse.name));
         handler.update(CHANNEL_DEVICE_MODEL, new StringType(devicesResponse.model));
         handler.update(CHANNEL_DEVICE_FIRMWARE, new StringType(devicesResponse.firmware));
+    }
+
+    @Override
+    public void prolongSession() throws ApiException {
+        if (Instant.now().isAfter(lastAuthTimestamp.plus(6, ChronoUnit.HOURS))) {
+            logger.warn("The last authorization was more 6 hours ago. Trying to get a new session");
+            auth();
+        }
     }
 }

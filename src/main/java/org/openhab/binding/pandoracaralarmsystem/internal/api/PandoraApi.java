@@ -55,4 +55,6 @@ public interface PandoraApi {
      * @throws ApiException the api exception
      */
     ApiResponse sendPostRequest(String path, String data) throws ApiException;
+
+    void prolongSession() throws ApiException;
 }
