@@ -12,9 +12,10 @@
             <channel id="name" typeId="name"/>
             <channel id="model" typeId="model"/>
             <channel id="firmware" typeId="firmware"/>
-            <channel id="status" typeId="status"/>
             <channel id="balance" typeId="balance"/>
             <channel id="gsm_level" typeId="gsm_level"/>
+            <channel id="status" typeId="status"/>
+            <channel id="movement" typeId="movement"/>
         </channels>
     </channel-group-type>
 

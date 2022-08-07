@@ -25,13 +25,6 @@
         <category>text</category>
         <state readOnly="true"/>
     </channel-type>
-    <channel-type id="status">		<!-- telemetry_online -->
-        <item-type>Switch</item-type>
-        <label>Device Status</label>
-        <description>The Status of Pandora Car Alarm System</description>
-        <category>status</category>
-        <state readOnly="true"/>
-    </channel-type>
     <channel-type id="balance">
         <item-type>String</item-type>
         <label>Device Balance</label>
@@ -46,5 +39,17 @@
         <category>qualityofservice</category>
         <state readOnly="true"/>
     </channel-type>
-
+    <channel-type id="status">
+        <item-type>Switch</item-type>
+        <label>Device Status</label>
+        <description>The Status of Pandora Car Alarm System</description>
+        <category>status</category>
+        <state readOnly="true"/>
+    </channel-type>
+    <channel-type id="movement">
+        <item-type>Switch</item-type>
+        <label>Movement</label>
+        <description>The Movement Status of Pandora Car Alarm System</description>
+        <state readOnly="true"/>
+    </channel-type>
 </thing:thing-descriptions>

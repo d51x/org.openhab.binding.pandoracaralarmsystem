@@ -79,6 +79,7 @@ public class PandoraCarAlarmSystemBindingConstants {
      * The constant CHANNEL_DEVICE_STATUS.
      */
     public static final String CHANNEL_DEVICE_STATUS = CHANNEL_GROUP_DEVICE + "#status";
+    public static final String CHANNEL_DEVICE_MOVEMENT = CHANNEL_GROUP_DEVICE + "#movement";
     /**
      * The constant CHANNEL_DEVICE_BALANCE.
      */

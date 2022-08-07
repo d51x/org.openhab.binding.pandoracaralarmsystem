@@ -21,7 +21,6 @@ import org.openhab.binding.pandoracaralarmsystem.internal.api.PandoraApiFactory;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.record.StatRecord;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiDevicesResponse;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiUpdateResponse;
-import org.openhab.core.library.items.ContactItem;
 import org.openhab.core.library.types.DecimalType;
 import org.openhab.core.library.types.OnOffType;
 import org.openhab.core.library.types.OpenClosedType;
@@ -254,6 +253,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
 
             Map<String, State> mapChannelsState = new HashMap<>();
             mapChannelsState.put(CHANNEL_DEVICE_STATUS, OnOffType.from(stat.online == 1));
+            mapChannelsState.put(CHANNEL_DEVICE_MOVEMENT, OnOffType.from(stat.move == 1));
 
             //v.update(CHANNEL_DEVICE_STATUS,  OnOffType.from(stat.online == 1));
             mapChannelsState.put(CHANNEL_DEVICE_BALANCE,  new StringType(stat.balance.value));
