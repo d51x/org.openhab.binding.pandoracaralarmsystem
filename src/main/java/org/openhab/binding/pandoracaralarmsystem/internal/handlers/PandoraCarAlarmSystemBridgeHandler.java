@@ -128,7 +128,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
 
         if (!mapPandoraThingHandler.isEmpty()) {
             mapPandoraThingHandler.forEach((k,v)->{
-                if (!devices.contains(k)) {
+                if (!devices.isEmpty() && !devices.contains(k)) {
                     mapPandoraThingHandler.remove(k);
                 }
             });
