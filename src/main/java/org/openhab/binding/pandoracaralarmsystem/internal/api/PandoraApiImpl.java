@@ -337,7 +337,7 @@ public class PandoraApiImpl implements PandoraApi {
         if (handler.pandoraCASConfiguration == null) {
             throw new ApiException("Configuration is null");
         }
-        logger.info("getDevices");
+        logger.debug("getDevices for System Id: {}", handler.pandoraCASConfiguration.deviceId);
         try {
             ApiResponse response = sendGetRequest(API_PATH_DEVICES, "", getSessionId());
             if (response.httpCode == 200) {
