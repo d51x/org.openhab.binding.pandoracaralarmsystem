@@ -31,6 +31,8 @@
             <channel id="fuel" typeId="fuel"/>
             <channel id="speed" typeId="speed"/>
             <channel id="mileage" typeId="mileage"/>
+            <channel id="lat" typeId="lat"/>
+            <channel id="lon" typeId="lon"/>
         </channels>
     </channel-group-type>
 
