@@ -15,6 +15,7 @@
 			<channel-group id="device" typeId="device"/>
 			<channel-group id="telemetry" typeId="telemetry"/>
 			<channel-group id="states" typeId="states"/>
+			<channel-group id="options" typeId="options"/>
 		</channel-groups>
 
 		<config-description uri="thing-type:pandoracaralarmsystem:thing">

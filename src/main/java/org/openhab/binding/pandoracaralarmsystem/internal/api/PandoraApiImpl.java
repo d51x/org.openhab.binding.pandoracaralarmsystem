@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.*;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.*;
 
 /**
  * The {@link PandoraApiImpl} is the json Api methods for Pandora Base versions (DXL-series)
@@ -409,9 +410,9 @@ public class PandoraApiImpl implements PandoraApi {
      * @param devicesResponse the devices response
      */
     protected void processBridgeStates(ApiDevicesResponse devicesResponse) {
-        handler.update(CHANNEL_DEVICE_NAME, new StringType(devicesResponse.name));
-        handler.update(CHANNEL_DEVICE_MODEL, new StringType(devicesResponse.model));
-        handler.update(CHANNEL_DEVICE_FIRMWARE, new StringType(devicesResponse.firmware));
+        handler.update(CHANNEL_DEVICE_NAME.getName(), new StringType(devicesResponse.name));
+        handler.update(CHANNEL_DEVICE_MODEL.getName(), new StringType(devicesResponse.model));
+        handler.update(CHANNEL_DEVICE_FIRMWARE.getName(), new StringType(devicesResponse.firmware));
     }
 
     @Override

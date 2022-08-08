@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.CHANNEL_DEVICE_STATUS;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.CHANNEL_DEVICE_STATUS;
 
 /**
  * The {@link PandoraCarAlarmThingHandler} is responsible for handling commands, which are
@@ -128,7 +128,7 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
             logger.debug("Device {}, channel {} set to {}", getDeviceId(), channelId, state);
             updateState(channelId, state);
         }
-        if (CHANNEL_DEVICE_STATUS.equals(channelId)) {
+        if (CHANNEL_DEVICE_STATUS.getName().equals(channelId)) {
             updateThingStatus(state);
         }
     }

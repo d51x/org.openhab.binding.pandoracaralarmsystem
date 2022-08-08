@@ -40,6 +40,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.*;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.*;
 import static org.openhab.binding.pandoracaralarmsystem.internal.api.ApiConstants.*;
 
 /**
@@ -223,9 +224,9 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
         if (mapPandoraThingHandler.containsKey(deviceId)) {
             PandoraCarAlarmThingHandler thingHandler = (PandoraCarAlarmThingHandler) mapPandoraThingHandler.get(deviceId);
             if (thingHandler != null) {
-                thingHandler.update(CHANNEL_DEVICE_NAME, new StringType(device.name));
-                thingHandler.update(CHANNEL_DEVICE_MODEL, new StringType(device.model));
-                thingHandler.update(CHANNEL_DEVICE_FIRMWARE, new StringType(device.firmware));
+                thingHandler.update(CHANNEL_DEVICE_NAME.getName(), new StringType(device.name));
+                thingHandler.update(CHANNEL_DEVICE_MODEL.getName(), new StringType(device.model));
+                thingHandler.update(CHANNEL_DEVICE_FIRMWARE.getName(), new StringType(device.firmware));
             }
         }
     }
@@ -240,78 +241,78 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
         mapPandoraThingHandler.forEach((k,v)-> {
             Map<String, Object> statObj = (Map<String, Object>) stats;
             if (!statObj.containsKey(k)) {
-                v.update(CHANNEL_DEVICE_STATUS,  OnOffType.OFF);
+                v.update(CHANNEL_DEVICE_STATUS.getName(),  OnOffType.OFF);
                 logger.error("Not found device Id = {} in updates", k);
                 return;
             }
             StatRecord stat = new Gson().fromJson(statObj.get(k).toString(), StatRecord.class);
             if (stat == null) {
-                v.update(CHANNEL_DEVICE_STATUS,  OnOffType.OFF);
+                v.update(CHANNEL_DEVICE_STATUS.getName(),  OnOffType.OFF);
                 logger.error("States update is empty for device Id = {}", k);
                 return;
             }
 
             Map<String, State> mapChannelsState = new HashMap<>();
-            mapChannelsState.put(CHANNEL_DEVICE_STATUS, OnOffType.from(stat.online == 1));
-            mapChannelsState.put(CHANNEL_DEVICE_MOVEMENT, OnOffType.from(stat.move == 1));
+            mapChannelsState.put(CHANNEL_DEVICE_STATUS.getName(), OnOffType.from(stat.online == 1));
+            mapChannelsState.put(CHANNEL_DEVICE_MOVEMENT.getName(), OnOffType.from(stat.move == 1));
 
             //v.update(CHANNEL_DEVICE_STATUS,  OnOffType.from(stat.online == 1));
-            mapChannelsState.put(CHANNEL_DEVICE_BALANCE,  new StringType(stat.balance.value));
-            mapChannelsState.put(CHANNEL_DEVICE_GSM_LEVEL,  new DecimalType(stat.gsmLevel.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_VOLTAGE,  new DecimalType(stat.voltage.floatValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_ENGINE_RPM,  new DecimalType(stat.engineRPM.longValue() * 10));
-            mapChannelsState.put(CHANNEL_TELEMETRY_ENGINE_TEMPERATURE,  new DecimalType(stat.engineTemperature.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_CABIN_TEMPERATURE,  new DecimalType(stat.cabinTemperature.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_OUTER_TEMPERATURE,  new DecimalType(stat.outerTemperature.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_FUEL_REMAIN,  new DecimalType(stat.fuel.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_SPEED,  new DecimalType(stat.speed.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_MILEAGE,  new DecimalType(stat.mileage.longValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_LATITUDE,  new DecimalType(stat.lat.floatValue()));
-            mapChannelsState.put(CHANNEL_TELEMETRY_LONGITUDE,  new DecimalType(stat.lon.floatValue()));
+            mapChannelsState.put(CHANNEL_BALANCE.getName(),  new StringType(stat.balance.value));
+            mapChannelsState.put(CHANNEL_GSM_LEVEL.getName(),  new DecimalType(stat.gsmLevel.longValue()));
+            mapChannelsState.put(CHANNEL_VOLTAGE.getName(),  new DecimalType(stat.voltage.floatValue()));
+            mapChannelsState.put(CHANNEL_ENGINE_RPM.getName(),  new DecimalType(stat.engineRPM.longValue() * 10));
+            mapChannelsState.put(CHANNEL_ENGINE_TEMPERATURE.getName(),  new DecimalType(stat.engineTemperature.longValue()));
+            mapChannelsState.put(CHANNEL_CABIN_TEMPERATURE.getName(),  new DecimalType(stat.cabinTemperature.longValue()));
+            mapChannelsState.put(CHANNEL_OUTER_TEMPERATURE.getName(),  new DecimalType(stat.outerTemperature.longValue()));
+            mapChannelsState.put(CHANNEL_FUEL.getName(),  new DecimalType(stat.fuel.longValue()));
+            mapChannelsState.put(CHANNEL_SPEED.getName(),  new DecimalType(stat.speed.longValue()));
+            mapChannelsState.put(CHANNEL_MILEAGE.getName(),  new DecimalType(stat.mileage.longValue()));
+            mapChannelsState.put(CHANNEL_LATITUDE.getName(),  new DecimalType(stat.lat.floatValue()));
+            mapChannelsState.put(CHANNEL_LONGITUDE.getName(),  new DecimalType(stat.lon.floatValue()));
 
             // bits
             long bitStates = stat.bitStates.longValue();
 
-            mapChannelsState.put(CHANNEL_STATES_LOCKED,  OnOffType.from(checkBit(bitStates, STATE_LOCKED)));
-            mapChannelsState.put(CHANNEL_STATES_ALARM,  OnOffType.from(checkBit(bitStates, STATE_ALARM)));
-            mapChannelsState.put(CHANNEL_STATES_ENGINE,  OnOffType.from(checkBit(bitStates, STATE_ENGINE)));
-            mapChannelsState.put(CHANNEL_STATES_IGNITION,  OnOffType.from(checkBit(bitStates, STATE_IGNITION)));
+            mapChannelsState.put(CHANNEL_LOCKED.getName(),  OnOffType.from(checkBit(bitStates, STATE_LOCKED)));
+            mapChannelsState.put(CHANNEL_ALARM.getName(),  OnOffType.from(checkBit(bitStates, STATE_ALARM)));
+            mapChannelsState.put(CHANNEL_ENGINE.getName(),  OnOffType.from(checkBit(bitStates, STATE_ENGINE)));
+            mapChannelsState.put(CHANNEL_IGNITION.getName(),  OnOffType.from(checkBit(bitStates, STATE_IGNITION)));
 
-            mapChannelsState.put(CHANNEL_STATES_AUTOSTART_INIT,  OnOffType.from(checkBit(bitStates, STATE_AUTOSTART_INIT)));
-            mapChannelsState.put(CHANNEL_STATES_HANDSFREE_LOCK,  OnOffType.from(checkBit(bitStates, STATE_HANDSFREE_LOCK)));
-            mapChannelsState.put(CHANNEL_STATES_HANDSFREE_UNLOCK,  OnOffType.from(checkBit(bitStates, STATE_HANDSFREE_UNLOCK)));
-            mapChannelsState.put(CHANNEL_STATES_GSM,  OnOffType.from(checkBit(bitStates, STATE_GSM)));
-            mapChannelsState.put(CHANNEL_STATES_GPS,  OnOffType.from(checkBit(bitStates, STATE_GPS)));
-            mapChannelsState.put(CHANNEL_STATES_TRACKING,  OnOffType.from(checkBit(bitStates, STATE_TRACKING)));
-            mapChannelsState.put(CHANNEL_STATES_IMMO,  OnOffType.from(checkBit(bitStates, STATE_IMMO)));
-            mapChannelsState.put(CHANNEL_EXTSENSOR_ALERT_ZONE,  OnOffType.from(checkBit(bitStates, STATE_EXT_SENSOR_ALERT_ZONE)));
-            mapChannelsState.put(CHANNEL_EXTSENSOR_MAIN_ZONE,  OnOffType.from(checkBit(bitStates, STATE_EXT_SENSOR_MAIN_ZONE)));
-            mapChannelsState.put(CHANNEL_SENSOR_ALERT_ZONE,  OnOffType.from(checkBit(bitStates, STATE_SENSOR_ALERT_ZONE)));
-            mapChannelsState.put(CHANNEL_SENSOR_MAIN_ZONE,  OnOffType.from(checkBit(bitStates, STATE_SENSOR_MAIN_ZONE)));
-            mapChannelsState.put(CHANNEL_STATES_AUTOSTART,  OnOffType.from(checkBit(bitStates, STATE_AUTOSTART)));
-            mapChannelsState.put(CHANNEL_STATES_SMS,  OnOffType.from(checkBit(bitStates, STATE_SMS)));
-            mapChannelsState.put(CHANNEL_STATES_CALL,  OnOffType.from(checkBit(bitStates, STATE_CALL)));
-            mapChannelsState.put(CHANNEL_STATES_LIGHT,  OnOffType.from(checkBit(bitStates, STATE_LIGHT)));
-            mapChannelsState.put(CHANNEL_STATES_SOUND_ALERT,  OnOffType.from(checkBit(bitStates, STATE_SOUND_ALERT)));
-            mapChannelsState.put(CHANNEL_STATES_SOUND_MAIN,  OnOffType.from(checkBit(bitStates, STATE_SOUND_MAIN)));
+            mapChannelsState.put(CHANNEL_AUTOSTART_INIT.getName(),  OnOffType.from(checkBit(bitStates, STATE_AUTOSTART_INIT)));
+            mapChannelsState.put(CHANNEL_HANDSFREE_LOCK.getName(),  OnOffType.from(checkBit(bitStates, STATE_HANDSFREE_LOCK)));
+            mapChannelsState.put(CHANNEL_HANDSFREE_UNLOCK.getName(),  OnOffType.from(checkBit(bitStates, STATE_HANDSFREE_UNLOCK)));
+            mapChannelsState.put(CHANNEL_GSM.getName(),  OnOffType.from(checkBit(bitStates, STATE_GSM)));
+            mapChannelsState.put(CHANNEL_GPS.getName(),  OnOffType.from(checkBit(bitStates, STATE_GPS)));
+            mapChannelsState.put(CHANNEL_TRACKING.getName(),  OnOffType.from(checkBit(bitStates, STATE_TRACKING)));
+            mapChannelsState.put(CHANNEL_IMMO.getName(),  OnOffType.from(checkBit(bitStates, STATE_IMMO)));
+            mapChannelsState.put(CHANNEL_EXTSENSOR_ALERT_ZONE.getName(),  OnOffType.from(checkBit(bitStates, STATE_EXT_SENSOR_ALERT_ZONE)));
+            mapChannelsState.put(CHANNEL_EXTSENSOR_MAIN_ZONE.getName(),  OnOffType.from(checkBit(bitStates, STATE_EXT_SENSOR_MAIN_ZONE)));
+            mapChannelsState.put(CHANNEL_SENSOR_ALERT_ZONE.getName(),  OnOffType.from(checkBit(bitStates, STATE_SENSOR_ALERT_ZONE)));
+            mapChannelsState.put(CHANNEL_SENSOR_MAIN_ZONE.getName(),  OnOffType.from(checkBit(bitStates, STATE_SENSOR_MAIN_ZONE)));
+            mapChannelsState.put(CHANNEL_STATES_AUTOSTART.getName(),  OnOffType.from(checkBit(bitStates, STATE_AUTOSTART)));
+            mapChannelsState.put(CHANNEL_SMS.getName(),  OnOffType.from(checkBit(bitStates, STATE_SMS)));
+            mapChannelsState.put(CHANNEL_CALL.getName(),  OnOffType.from(checkBit(bitStates, STATE_CALL)));
+            mapChannelsState.put(CHANNEL_LIGHT.getName(),  OnOffType.from(checkBit(bitStates, STATE_LIGHT)));
+            mapChannelsState.put(CHANNEL_SOUND_ALERT.getName(),  OnOffType.from(checkBit(bitStates, STATE_SOUND_ALERT)));
+            mapChannelsState.put(CHANNEL_SOUND_MAIN.getName(),  OnOffType.from(checkBit(bitStates, STATE_SOUND_MAIN)));
 
-            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_LEFT, checkBit(bitStates, STATE_DOOR_FRONT_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-            mapChannelsState.put(CHANNEL_STATES_DOOR_FRONT_RIGHT, checkBit(bitStates, STATE_DOOR_FRONT_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_LEFT, checkBit(bitStates, STATE_DOOR_BACK_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-            mapChannelsState.put(CHANNEL_STATES_DOOR_BACK_RIGHT, checkBit(bitStates, STATE_DOOR_BACK_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-            mapChannelsState.put(CHANNEL_STATES_TRUNK, checkBit(bitStates, STATE_TRUNK) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-            mapChannelsState.put(CHANNEL_STATES_HOOD, checkBit(bitStates, STATE_HOOD) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_DOOR_FRONT_LEFT.getName(), checkBit(bitStates, STATE_DOOR_FRONT_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_DOOR_FRONT_RIGHT.getName(), checkBit(bitStates, STATE_DOOR_FRONT_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_DOOR_BACK_LEFT.getName(), checkBit(bitStates, STATE_DOOR_BACK_LEFT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_DOOR_BACK_RIGHT.getName(), checkBit(bitStates, STATE_DOOR_BACK_RIGHT) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_TRUNK.getName(), checkBit(bitStates, STATE_TRUNK) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
+            mapChannelsState.put(CHANNEL_HOOD.getName(), checkBit(bitStates, STATE_HOOD) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
 
-            mapChannelsState.put(CHANNEL_STATES_HANDBRAKE,  OnOffType.from(checkBit(bitStates, STATE_HANDBRAKE)));
-            mapChannelsState.put(CHANNEL_STATES_BRAKES,  OnOffType.from(checkBit(bitStates, STATE_BRAKES)));
-            mapChannelsState.put(CHANNEL_STATES_PREHEATER,  OnOffType.from(checkBit(bitStates, STATE_PREHEATER)));
-            mapChannelsState.put(CHANNEL_STATES_ACTIVE_SECURE,  OnOffType.from(checkBit(bitStates, STATE_ACTIVE_SECURE)));
-            mapChannelsState.put(CHANNEL_STATES_PROGRAMM_PREHEAT,  OnOffType.from(checkBit(bitStates, STATE_PROGRAMM_PREHEAT)));
-            mapChannelsState.put(CHANNEL_STATES_EVAQ,  OnOffType.from(checkBit(bitStates, STATE_EVAQ)));
-            mapChannelsState.put(CHANNEL_STATES_MAINTENANCE,  OnOffType.from(checkBit(bitStates, STATE_MAINTENANCE)));
-            mapChannelsState.put(CHANNEL_STATES_STAY_HOME,  OnOffType.from(checkBit(bitStates, STATE_STAY_HOME)));
-            mapChannelsState.put(CHANNEL_STATES_DISABLE_REQUEST_METKA,  OnOffType.from(checkBit(bitStates, STATE_DISABLE_REQUEST_METKA)));
-            mapChannelsState.put(CHANNEL_STATES_DISABLE_UNLOCK_WITHOUT_METKA,  OnOffType.from(checkBit(bitStates, STATE_DISABLE_UNLOCK_WITHOUT_METKA)));
+            mapChannelsState.put(CHANNEL_HANDBRAKE.getName(),  OnOffType.from(checkBit(bitStates, STATE_HANDBRAKE)));
+            mapChannelsState.put(CHANNEL_BRAKES.getName(),  OnOffType.from(checkBit(bitStates, STATE_BRAKES)));
+            mapChannelsState.put(CHANNEL_PREHEATER.getName(),  OnOffType.from(checkBit(bitStates, STATE_PREHEATER)));
+            mapChannelsState.put(CHANNEL_ACTIVE_SECURE.getName(),  OnOffType.from(checkBit(bitStates, STATE_ACTIVE_SECURE)));
+            mapChannelsState.put(CHANNEL_PROGRAMM_PREHEAT.getName(),  OnOffType.from(checkBit(bitStates, STATE_PROGRAMM_PREHEAT)));
+            mapChannelsState.put(CHANNEL_EVAQ.getName(),  OnOffType.from(checkBit(bitStates, STATE_EVAQ)));
+            mapChannelsState.put(CHANNEL_MAINTENANCE.getName(),  OnOffType.from(checkBit(bitStates, STATE_MAINTENANCE)));
+            mapChannelsState.put(CHANNEL_STAY_HOME.getName(),  OnOffType.from(checkBit(bitStates, STATE_STAY_HOME)));
+            mapChannelsState.put(CHANNEL_DISABLE_REQUEST_METKA.getName(),  OnOffType.from(checkBit(bitStates, STATE_DISABLE_REQUEST_METKA)));
+            mapChannelsState.put(CHANNEL_DISABLE_UNLOCK_WITHOUT_METKA.getName(),  OnOffType.from(checkBit(bitStates, STATE_DISABLE_UNLOCK_WITHOUT_METKA)));
 
             v.updateByMap(mapChannelsState);
         });
