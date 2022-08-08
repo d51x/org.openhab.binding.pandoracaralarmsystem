@@ -57,9 +57,11 @@ There are three groups of channels
 
 ## Addition information
 
-Thanks to Alexey Vlasov [https://github.com/turbulator/pandora-cas](https://github.com/turbulator/pandora-cas) for the source code of Home Assistant component.
+Before starting to develop the binding I studied (Developer Tools in Browser).
 
-From this source code I used information how to decode bit states.
+Many information is available in js-files.
+
+This page [https://github.com/turbulator/pandora-cas](https://github.com/turbulator/pandora-cas) promted me to create the binding.
 
 ## Disclimer
 This software is unofficial and isn't affiliated with or endorsed by ООО «НПО Телеметрия». You can use it at own risk.
