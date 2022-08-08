@@ -24,11 +24,11 @@
         <description>Device telemetry</description>
         <channels>
             <channel id="voltage" typeId="voltage"/>
-            <channel id="engine_rpm" typeId="engine_rpm"/>
+            <channel id="fuel" typeId="fuel"/>
             <channel id="engine_temp" typeId="engine_temp"/>
             <channel id="cabin_temp" typeId="cabin_temp"/>
             <channel id="outer_temp" typeId="outer_temp"/>
-            <channel id="fuel" typeId="fuel"/>
+            <channel id="engine_rpm" typeId="engine_rpm"/>
             <channel id="speed" typeId="speed"/>
             <channel id="mileage" typeId="mileage"/>
             <channel id="lat" typeId="lat"/>

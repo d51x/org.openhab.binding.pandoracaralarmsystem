@@ -5,14 +5,14 @@
                           xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
     <channel-type id="voltage">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number</item-type>
         <label>Battery Voltage</label>
-        <description>The Battery Voltage of the Device</description>
+        <description>Displays battery voltage</description>
         <category>if:bxs:car-battery</category>
         <state pattern="%.1f" readOnly="true"/>
     </channel-type>
     <channel-type id="engine_rpm" advanced="true">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number</item-type>
         <label>Engine RPM</label>
         <description>The Engine RPM of the Device</description>
         <category>if:ic:outline-speed</category>
@@ -41,34 +41,34 @@
     </channel-type>
     <channel-type id="fuel">
         <item-type>Number</item-type>
-        <label>Fuel Remain</label>
+        <label>Fuel Level</label>
         <description>The Fuel Remain of the Device</description>
         <category>if:bxs:gas-pump</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="speed" advanced="true">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number:Speed</item-type>
         <label>Speed</label>
         <description>The Speed of the Device</description>
         <category>if:ic:outline-speed</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="mileage" advanced="true">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number</item-type>
         <label>Mileage</label>
         <description>The Mileage of the Device</description>
         <category>if:tabler:route</category>
         <state pattern="%d" readOnly="true"/>
     </channel-type>
     <channel-type id="lat" advanced="true">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number</item-type>
         <label>Latitude</label>
         <description>The Latitude (coordinates)</description>
         <category>if:bxs:map-pin</category>
         <state pattern="%.6f" readOnly="true"/>
     </channel-type>
     <channel-type id="lon" advanced="true">
-        <item-type>Number:Dimensionless</item-type>
+        <item-type>Number</item-type>
         <label>Longitude</label>
         <description>The Longitude (coordinates)</description>
         <category>if:bxs:map-pin</category>

@@ -28,7 +28,7 @@
     <channel-type id="balance">
         <item-type>String</item-type>
         <label>Device Balance</label>
-        <description>The Balance of Pandora Car Alarm System</description>
+        <description>The available balance in account</description>
         <category>piggybank</category>
         <state pattern="%s %unit%" readOnly="true"/>
     </channel-type>
@@ -42,15 +42,25 @@
     <channel-type id="status">
         <item-type>Switch</item-type>
         <label>Device Status</label>
-        <description>The Status of Pandora Car Alarm System</description>
-        <category>status</category>
-        <state readOnly="true"/>
+        <description>Displays whether the device is online or not</description>
+        <category>if:simple-icons:statuspal</category>
+        <state readOnly="true">
+            <options>
+                <option value="ON">Online</option>
+                <option value="OFF">Offline</option>
+            </options>
+        </state>
     </channel-type>
     <channel-type id="movement">
         <item-type>Switch</item-type>
-        <label>Movement</label>
-        <description>The Movement Status of Pandora Car Alarm System</description>
+        <label>Movement status</label>
+        <description>Displays whether the vehicle is moving or not</description>
         <category>if:carbon:movement</category>
-        <state readOnly="true"/>
+        <state readOnly="true">
+            <options>
+                <option value="ON">In move</option>
+                <option value="OFF">Motionless</option>
+            </options>
+        </state>
     </channel-type>
 </thing:thing-descriptions>
