@@ -66,6 +66,7 @@
         <item-type>Contact</item-type>
         <label>Front Right Door</label>
         <description>The Front Right Door state (Open/Closed)</description>
+        <category>door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="door_back_left">
