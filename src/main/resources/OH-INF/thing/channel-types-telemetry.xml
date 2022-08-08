@@ -8,70 +8,70 @@
         <item-type>Number:Dimensionless</item-type>
         <label>Battery Voltage</label>
         <description>The Battery Voltage of the Device</description>
-        <category>batterylevel</category>
+        <category>if:bxs:car-battery</category>
         <state pattern="%.1f" readOnly="true"/>
     </channel-type>
     <channel-type id="engine_rpm" advanced="true">
         <item-type>Number:Dimensionless</item-type>
         <label>Engine RPM</label>
         <description>The Engine RPM of the Device</description>
-        <category>pressure</category>
+        <category>if:ic:outline-speed</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="engine_temp">
         <item-type>Number:Temperature</item-type>
         <label>Engine Temperature</label>
         <description>The Engine Temperature of the Device</description>
-        <category>temperature</category>
+        <category>if:mdi:coolant-temperature</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="cabin_temp">
         <item-type>Number:Temperature</item-type>
         <label>Cabin Temperature</label>
         <description>The Cabin Temperature of the Device</description>
-        <category>temperature</category>
+        <category>if:carbon:temperature</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="outer_temp" advanced="true">
         <item-type>Number:Temperature</item-type>
         <label>Outer Temperature</label>
         <description>The Outer Temperature of the Device</description>
-        <category>temperature</category>
+        <category>if:carbon:temperature</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="fuel">
         <item-type>Number</item-type>
         <label>Fuel Remain</label>
         <description>The Fuel Remain of the Device</description>
-        <category>oil</category>
+        <category>if:bxs:gas-pump</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="speed" advanced="true">
         <item-type>Number:Dimensionless</item-type>
         <label>Speed</label>
         <description>The Speed of the Device</description>
-        <category>pressure</category>
+        <category>if:ic:outline-speed</category>
         <state pattern="%d %unit%" readOnly="true"/>
     </channel-type>
     <channel-type id="mileage" advanced="true">
         <item-type>Number:Dimensionless</item-type>
         <label>Mileage</label>
         <description>The Mileage of the Device</description>
-        <category>line</category>
+        <category>if:tabler:route</category>
         <state pattern="%d" readOnly="true"/>
     </channel-type>
     <channel-type id="lat" advanced="true">
         <item-type>Number:Dimensionless</item-type>
         <label>Latitude</label>
         <description>The Latitude (coordinates)</description>
-        <category>line</category>
+        <category>if:bxs:map-pin</category>
         <state pattern="%.6f" readOnly="true"/>
     </channel-type>
     <channel-type id="lon" advanced="true">
         <item-type>Number:Dimensionless</item-type>
         <label>Longitude</label>
         <description>The Longitude (coordinates)</description>
-        <category>line</category>
+        <category>if:bxs:map-pin</category>
         <state pattern="%.6f" readOnly="true"/>
     </channel-type>
 </thing:thing-descriptions>

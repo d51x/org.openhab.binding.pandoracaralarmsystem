@@ -22,21 +22,21 @@
         <item-type>Switch</item-type>
         <label>Engine State</label>
         <description>The Engine Started or Off</description>
-        <category>Switch</category>
+        <category>if:mdi:engine</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="ignition" advanced="true">
         <item-type>Switch</item-type>
         <label>Ignition State</label>
         <description>The Ignition On or Off</description>
-        <category>Switch</category>
+        <category>if:arcticons:celighting</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="autostart_init" advanced="true">
         <item-type>Switch</item-type>
         <label>Auto Start Init</label>
         <description>The Auto Start initiation state (On or Off)</description>
-        <category>Switch</category>
+        <category>if:fluent:flash-auto-20-filled</category>
         <state readOnly="true"/>
     </channel-type>
 
@@ -59,77 +59,77 @@
         <item-type>Contact</item-type>
         <label>Front Left Door</label>
         <description>The Front Left Door state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="door_front_right">
         <item-type>Contact</item-type>
         <label>Front Right Door</label>
         <description>The Front Right Door state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="door_back_left">
         <item-type>Contact</item-type>
         <label>Back Left Door</label>
         <description>The Back Left Door state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="door_back_right">
         <item-type>Contact</item-type>
         <label>Back Right Door</label>
         <description>The Back Right Door state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="trunk">
         <item-type>Contact</item-type>
         <label>Trunk</label>
         <description>The Trunk state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="hood" advanced="true">
         <item-type>Contact</item-type>
         <label>Hood</label>
         <description>The Hood state (Open/Closed)</description>
-        <category>door</category>
+        <category>if:mdi:car-door</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="handbrake" advanced="true">
         <item-type>Switch</item-type>
         <label>HandBrake</label>
         <description>HandBrake State (on/off)</description>
-        <category>switch</category>
+        <category>if:mdi:car-brake-parking</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="brakes" advanced="true">
         <item-type>Switch</item-type>
         <label>Brakes</label>
         <description>Brakes State (on/off)</description>
-        <category>switch</category>
+        <category>if:mdi:car-brake-alert</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="active_secure" advanced="true">
         <item-type>Switch</item-type>
         <label>Active Secure</label>
         <description>Active Secure State (on/off)</description>
-        <category>shield</category>
+        <category>if:wpf:security-checked</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="evaq" advanced="true">
         <item-type>Switch</item-type>
         <label>Evaquation</label>
         <description>Evaquation State (on/off)</description>
-        <category>switch</category>
+        <category>if:ic:baseline-car-repair</category>
         <state readOnly="true"/>
     </channel-type>
     <channel-type id="maintenance" advanced="true">
         <item-type>Switch</item-type>
         <label>Maintenence Mode</label>
         <description>Maintenence Mode State (on/off)</description>
-        <category>switch</category>
+        <category>if:maki:car-repair</category>
         <state readOnly="true"/>
     </channel-type>
 </thing:thing-descriptions>
