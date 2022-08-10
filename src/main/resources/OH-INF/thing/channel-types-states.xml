@@ -9,7 +9,7 @@
         <label>Locked</label>
         <description>Displays protection status: Under protection / Protection removed</description>
         <category>lock</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">Yes</option>
                 <option value="OFF">No</option>
@@ -33,7 +33,7 @@
         <label>Engine State</label>
         <description>Displays engine status: Engine running / </description>
         <category>if:mdi:engine</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -78,7 +78,7 @@
         <label>Light state</label>
         <description>Light state (on/off)</description>
         <category>light</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -138,7 +138,7 @@
         <label>Trunk</label>
         <description>The Trunk state (Open/Closed)</description>
         <category>if:mdi:car-door</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="OPEN">Open</option>
                 <option value="CLOSED">Closed</option>
@@ -186,7 +186,7 @@
         <label>Active Secure</label>
         <description>Active Secure State (on/off)</description>
         <category>if:wpf:security-checked</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -205,7 +205,7 @@
         <label>Maintenence Mode</label>
         <description>Maintenence Mode State (on/off)</description>
         <category>if:maki:car-repair</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>

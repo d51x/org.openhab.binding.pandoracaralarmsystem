@@ -186,6 +186,8 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
             } else if (OnOffType.OFF == command) {
                 apiCommand = ApiCommands.CMD_MAINTENANCE_OFF;
             }
+        } else if (CHANNEL_COMMAND.getName().equals(channelUID.getId())) {
+            apiCommand = ApiCommands.getByCommand(command.toString());
         }
 
         try {

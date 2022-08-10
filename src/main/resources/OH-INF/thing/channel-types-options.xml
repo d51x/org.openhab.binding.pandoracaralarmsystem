@@ -57,7 +57,7 @@
         <label>Tracking State</label>
         <description>Tracking State (on/off)</description>
         <category>if:gis:route</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -172,7 +172,7 @@
         <label>PreHeater</label>
         <description>PreHeater State (on/off)</description>
         <category>if:material-symbols:water-heater-outline</category>
-        <state readOnly="false">
+        <state readOnly="true">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>

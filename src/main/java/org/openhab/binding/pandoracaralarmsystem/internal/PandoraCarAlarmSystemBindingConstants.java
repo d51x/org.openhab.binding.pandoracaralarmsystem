@@ -65,5 +65,6 @@ public class PandoraCarAlarmSystemBindingConstants {
      */
     public static final String CHANNEL_GROUP_STATES = "states";
     public static final String CHANNEL_GROUP_OPTIONS = "options";
+    public static final String CHANNEL_GROUP_ACTIONS = "actions";
 
 }
