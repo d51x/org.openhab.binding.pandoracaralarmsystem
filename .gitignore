@@ -1,4 +1,4 @@
 /target/
 /compile.txt
 /.idea/
-/target/
+/target/*

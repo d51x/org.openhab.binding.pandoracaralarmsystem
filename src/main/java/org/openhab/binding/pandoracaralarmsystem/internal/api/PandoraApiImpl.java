@@ -479,7 +479,7 @@ public class PandoraApiImpl implements PandoraApi {
         formData.add("id", deviceId);
         formData.add("command", command.getId().toString());
 
-        logger.info("send command {} for {}", command.getId(), deviceId);
+        logger.debug("send command {} for {}", command.getId(), deviceId);
 
         try {
             ApiResponse response = sendPostRequest(API_PATH_CMD, formData);

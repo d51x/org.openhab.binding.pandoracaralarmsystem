@@ -28,6 +28,7 @@ import org.openhab.core.thing.binding.BaseBridgeHandler;
 import org.openhab.core.thing.binding.ThingHandler;
 import org.openhab.core.thing.binding.ThingHandlerService;
 import org.openhab.core.types.Command;
+import org.openhab.core.types.RefreshType;
 import org.openhab.core.types.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,7 +138,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
     public void handleCommand(ChannelUID channelUID, Command command) {
         if (api == null) return;
         PandoraApi localApi = api;
-        logger.info("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
+        logger.debug("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
     }
 
     public void sendCommand(ChannelUID channelUID, Command command, String deviceId) {
@@ -145,7 +146,10 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
         PandoraApi localApi = api;
         ApiCommands apiCommand = ApiCommands.CMD_UNKNOWN;
 
-        logger.info("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
+        if (command == RefreshType.REFRESH) {
+            return;
+        }
+        logger.debug("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
         if (CHANNEL_LOCKED.getName().equals(channelUID.getId())) {
             if (OnOffType.ON == command) {
                 apiCommand = ApiCommands.CMD_LOCK;
