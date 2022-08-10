@@ -42,6 +42,7 @@ import java.util.concurrent.TimeoutException;
 
 import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.*;
 import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.*;
+import static org.openhab.binding.pandoracaralarmsystem.internal.api.ApiCommands.CMD_UNKNOWN;
 
 /**
  * The {@link PandoraApiImpl} is the json Api methods for Pandora Base versions (DXL-series)
@@ -58,6 +59,7 @@ public class PandoraApiImpl implements PandoraApi {
      * The constant API_PATH_AUTH.
      */
     public static final String API_PATH_AUTH = "/users/login";
+    public static final String API_PATH_CMD = "/devices/command";
     /**
      * The constant API_PATH_DEVICES.
      */
@@ -222,11 +224,14 @@ public class PandoraApiImpl implements PandoraApi {
         throw new ApiException(errorReason);
     }
 
-    @Override
-    public ApiResponse sendPostRequest(String path, String data) throws ApiException {
+    private void checkConfiguration() throws ApiException {
         if (Objects.isNull(handler.pandoraCASConfiguration)) {
             throw new ApiException("Configuration is empty");
         }
+    }
+    @Override
+    public ApiResponse sendPostRequest(String path, String data) throws ApiException {
+        checkConfiguration();
         ApiResponse result = new ApiResponse();
 
         Request request = httpClient.newRequest(apiUrl + path);
@@ -248,6 +253,7 @@ public class PandoraApiImpl implements PandoraApi {
             result.httpCode = contentResponse.getStatus();
             if (result.httpCode == 200 ||
                     result.httpCode >= 400 && result.httpCode < 500) {
+                //TODO: refactor auth
                 Optional<HttpField> cookie = contentResponse.getHeaders().stream().filter(f->f.getName().equalsIgnoreCase("set-cookie")).findFirst();
                 if (cookie.isPresent()) {
                     String[] cookieData = cookie.get().getValue().split(";");
@@ -272,7 +278,43 @@ public class PandoraApiImpl implements PandoraApi {
         throw new ApiException(errorReason);
     }
 
-    private void setSession(String sid, Long expires) {
+    @Override
+    public ApiResponse sendPostRequest(String path, Fields fields) throws ApiException {
+        checkConfiguration();
+        if (fields.isEmpty()) {
+            logger.error("Unable send POST request: fields are empty");
+            throw new ApiException("Unable send POST request: fields are empty");
+        }
+        String errorReason = "";
+        ApiResponse result = new ApiResponse();
+        Request request = httpClient.newRequest(apiUrl + path);
+        setHeaders(request);
+        httpClient.setConnectTimeout(60*1000);
+        httpClient.setAddressResolutionTimeout(60*1000);
+        request.content(new FormContentProvider(fields));
+        request.method(HttpMethod.POST);
+        try {
+            ContentResponse contentResponse = request.send();
+            result.httpCode = contentResponse.getStatus();
+            if (result.httpCode == 200 ||
+                    result.httpCode >= 400 && result.httpCode < 500) {
+                result.response = contentResponse.getContentAsString();
+                return result;
+            } else {
+                errorReason = String.format("Pandora request failed with %d: %s", contentResponse.getStatus(),
+                        contentResponse.getReason());
+            }
+        } catch (InterruptedException e) {
+            errorReason = String.format("InterruptedException: %s", e.getMessage());
+        } catch (TimeoutException e) {
+            errorReason = "TimeoutException: Pandora Api was not reachable on your network";
+        } catch (ExecutionException e) {
+            errorReason = String.format("ExecutionException: %s", e.getMessage());
+        }
+        throw new ApiException(errorReason);
+    }
+
+        private void setSession(String sid, Long expires) {
         setSessionId(sid);
         setExpires(expires);
     }
@@ -281,9 +323,8 @@ public class PandoraApiImpl implements PandoraApi {
     }
 
     private ApiAuthResponse auth() throws ApiException {
-        if (handler.pandoraCASConfiguration == null) {
-            throw new ApiException("Configuration is null");
-        }
+        checkConfiguration();
+
         StringBuilder formData  = new StringBuilder();
         formData.append("login=");
         formData.append(handler.pandoraCASConfiguration.login);
@@ -420,6 +461,40 @@ public class PandoraApiImpl implements PandoraApi {
         if (Instant.now().isAfter(lastAuthTimestamp.plus(6, ChronoUnit.HOURS))) {
             logger.warn("The last authorization was more 6 hours ago. Trying to get a new session");
             auth();
+        }
+    }
+
+    @Override
+    public ApiCommandResponse sendCommand(String deviceId, ApiCommands command) throws ApiException {
+        if (handler.pandoraCASConfiguration == null) {
+            throw new ApiException("Configuration is null");
+        }
+
+        if (command == CMD_UNKNOWN) {
+            logger.error("Unknown command for {}", deviceId);
+            throw new ApiException("Error sending unknown command");
+        }
+
+        Fields formData = new Fields();
+        formData.add("id", deviceId);
+        formData.add("command", command.getId().toString());
+
+        logger.info("send command {} for {}", command.getId(), deviceId);
+
+        try {
+            ApiResponse response = sendPostRequest(API_PATH_CMD, formData);
+            if (response.httpCode == 200) {
+                ApiCommandResponse apiCommandResponse = new Gson().fromJson(response.response, ApiCommandResponse.class);
+                if (apiCommandResponse != null) {
+                    return apiCommandResponse;
+                } else {
+                    throw new RuntimeException("empty command response");
+                }
+            } else {
+                throw processErrorResponse("command", response);
+            }
+        } catch (JsonSyntaxException e) {
+            throw new ApiException("JsonSyntaxException:{}", e);
         }
     }
 }

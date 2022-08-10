@@ -69,7 +69,16 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
 
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-
+        logger.info("Thing: Send command {} to channel {}", command.toString(), channelUID.getId());
+        Bridge bridge = getBridge();
+        if (bridge == null) {
+            return;
+        }
+        PandoraCarAlarmSystemBridgeHandler pandoraBridgeHandler = (PandoraCarAlarmSystemBridgeHandler) bridge.getHandler();
+        if (pandoraBridgeHandler == null) {
+            return;
+        }
+        pandoraBridgeHandler.sendCommand(channelUID, command, deviceId);
     }
 
     @Override
