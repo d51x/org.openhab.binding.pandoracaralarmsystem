@@ -12,7 +12,10 @@
 package org.openhab.binding.pandoracaralarmsystem.internal.api;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.jetty.util.Fields;
+import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiCommandResponse;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiResponse;
+import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiSuccessResponse;
 
 /**
  * The {@link PandoraApi} is the JSON API methods that can be extended for different devices.
@@ -55,6 +58,9 @@ public interface PandoraApi {
      * @throws ApiException the api exception
      */
     ApiResponse sendPostRequest(String path, String data) throws ApiException;
+    ApiResponse sendPostRequest(String path, Fields fields) throws ApiException;
 
     void prolongSession() throws ApiException;
+
+    ApiCommandResponse sendCommand(String deviceId, ApiCommands command) throws ApiException;
 }

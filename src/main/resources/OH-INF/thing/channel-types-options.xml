@@ -57,7 +57,7 @@
         <label>Tracking State</label>
         <description>Tracking State (on/off)</description>
         <category>if:gis:route</category>
-        <state readOnly="true">
+        <state readOnly="false">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -167,12 +167,12 @@
             </options>
         </state>
     </channel-type>
-    <channel-type id="preheater" advanced="true">
+    <channel-type id="preheater" advanced="false">
         <item-type>Switch</item-type>
         <label>PreHeater</label>
         <description>PreHeater State (on/off)</description>
         <category>if:material-symbols:water-heater-outline</category>
-        <state readOnly="true">
+        <state readOnly="false">
             <options>
                 <option value="ON">On</option>
                 <option value="OFF">Off</option>
@@ -191,7 +191,7 @@
             </options>
         </state>
     </channel-type>
-    <channel-type id="stay_home" advanced="true">
+    <channel-type id="stay_home" advanced="false">
         <item-type>Switch</item-type>
         <label>Stay Home Mode</label>
         <description>Stay Home Mode State (on/off)</description>
