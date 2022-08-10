@@ -50,7 +50,7 @@ public class PandoraCarAlarmSystemBindingConstants {
     /**
      * The constant DEFAULT_POLLING_INTERVAL_SEC.
      */
-    public static final Integer DEFAULT_POLLING_INTERVAL_SEC = 30;
+    public static final Integer DEFAULT_POLLING_INTERVAL_SEC = 5;
 
     /**
      * The constant CHANNEL_GROUP_PROPERTIES.
