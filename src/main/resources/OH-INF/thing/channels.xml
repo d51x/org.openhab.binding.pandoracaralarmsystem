@@ -6,8 +6,8 @@
                           xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
     <channel-group-type id="device">
-        <label>Device Propertis</label>
-        <description>Device propertis</description>
+        <label>Device Properties</label>
+        <description>Device properties</description>
         <channels>
             <channel id="name" typeId="name"/>
             <channel id="model" typeId="model"/>

@@ -11,8 +11,8 @@
         <category>lock</category>
         <state readOnly="true">
             <options>
-                <option value="ON">Under protection</option>
-                <option value="OFF">Protection removed</option>
+                <option value="ON">Yes</option>
+                <option value="OFF">No</option>
             </options>
         </state>
     </channel-type>
@@ -35,7 +35,7 @@
         <category>if:mdi:engine</category>
         <state readOnly="true">
             <options>
-                <option value="ON">Running</option>
+                <option value="ON">On</option>
                 <option value="OFF">Off</option>
             </options>
         </state>
@@ -164,8 +164,8 @@
         <category>if:mdi:car-brake-parking</category>
         <state readOnly="true">
             <options>
-                <option value="ON">Up</option>
-                <option value="OFF">Down</option>
+                <option value="ON">On</option>
+                <option value="OFF">Off</option>
             </options>
         </state>
     </channel-type>
@@ -176,8 +176,8 @@
         <category>if:mdi:car-brake-alert</category>
         <state readOnly="true">
             <options>
-                <option value="ON">Pressed</option>
-                <option value="OFF">Released</option>
+                <option value="ON">On</option>
+                <option value="OFF">Off</option>
             </options>
         </state>
     </channel-type>
@@ -207,8 +207,8 @@
         <category>if:maki:car-repair</category>
         <state readOnly="true">
             <options>
-                <option value="ON">Auto (Anti-Hi-Jack)</option>
-                <option value="OFF">Not blocked</option>
+                <option value="ON">On</option>
+                <option value="OFF">Off</option>
             </options>
         </state>
     </channel-type>

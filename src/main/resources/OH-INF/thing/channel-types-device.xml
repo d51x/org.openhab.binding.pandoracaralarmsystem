@@ -53,13 +53,13 @@
     </channel-type>
     <channel-type id="movement">
         <item-type>Switch</item-type>
-        <label>Movement status</label>
+        <label>Movement</label>
         <description>Displays whether the vehicle is moving or not</description>
         <category>if:carbon:movement</category>
         <state readOnly="true">
             <options>
-                <option value="ON">In move</option>
-                <option value="OFF">Motionless</option>
+                <option value="ON">Yes</option>
+                <option value="OFF">No</option>
             </options>
         </state>
     </channel-type>
