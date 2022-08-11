@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="pandoracaralarmsystem"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <channel-type id="command">
+        <item-type>String</item-type>
+        <label>Command</label>
+        <description>Command to execute</description>
+        <state>
+            <options>
+                <option value="lock">Arm</option>
+                <option value="unlock">Disarm</option>
+                <option value="engine_start">Engine start</option>
+                <option value="engine_stop">Engine stop</option>
+                <option value="tracking_on">Switching on the tracking</option>
+                <option value="tracking_off">Switching off the tracking</option>
+                <option value="add_cmd_1">Additional command 1</option>
+                <option value="add_cmd_2">Additional command 2</option>
+                <option value="prolong_conn">Prolong connection</option>
+                <option value="terminate_conn">Terminate connection</option>
+                <option value="check">CHECK Command</option>
+                <option value="active_protect_on">Switching on the active protection</option>
+                <option value="active_protect_off">Disabling active security</option>
+                <option value="preheater_on">Enable pre-heater</option>
+                <option value="preheater_off">Disable pre-heater</option>
+                <option value="horn">Sound a signal</option>
+                <option value="backlight">Enable backlight</option>
+                <option value="timer_ch_enable">Enable timer channel</option>
+                <option value="timer_ch_disable">Disable timer channel</option>
+                <option value="open_trunk">Opening trunk</option>
+                <option value="maintenance_on">Maintenance mode ON</option>
+                <option value="maintenance_off">Maintenance mode OFF</option>
+            </options>
+        </state>
+    </channel-type>
+</thing:thing-descriptions>

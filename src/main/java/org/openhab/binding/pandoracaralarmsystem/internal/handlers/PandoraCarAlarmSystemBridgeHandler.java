@@ -15,9 +15,7 @@ import com.google.gson.Gson;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemConfiguration;
-import org.openhab.binding.pandoracaralarmsystem.internal.api.ApiException;
-import org.openhab.binding.pandoracaralarmsystem.internal.api.PandoraApi;
-import org.openhab.binding.pandoracaralarmsystem.internal.api.PandoraApiFactory;
+import org.openhab.binding.pandoracaralarmsystem.internal.api.*;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.record.StatRecord;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiDevicesResponse;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiUpdateResponse;
@@ -30,6 +28,7 @@ import org.openhab.core.thing.binding.BaseBridgeHandler;
 import org.openhab.core.thing.binding.ThingHandler;
 import org.openhab.core.thing.binding.ThingHandlerService;
 import org.openhab.core.types.Command;
+import org.openhab.core.types.RefreshType;
 import org.openhab.core.types.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,14 +136,65 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
     }
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-//        if (api == null) return;
-//        PandoraApi localApi = api;
-//        try {
-//            channelUID.getId();
-//        } catch (ApiException e) {
-//            logger.debug("Exception occured when Channel:{}, Command:{}, Error:{}", channelUID.getId(), command,
-//                    e.getMessage());
-//        }
+        if (api == null) return;
+        PandoraApi localApi = api;
+        logger.debug("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
+    }
+
+    public void sendCommand(ChannelUID channelUID, Command command, String deviceId) {
+        if (api == null) return;
+        PandoraApi localApi = api;
+        ApiCommands apiCommand = ApiCommands.CMD_UNKNOWN;
+
+        if (command == RefreshType.REFRESH) {
+            return;
+        }
+        logger.debug("Bridge: Send command {} to device {}", command.toString(), channelUID.getId());
+        if (CHANNEL_LOCKED.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_LOCK;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_UNLOCK;
+            }
+        } else if (CHANNEL_ACTIVE_SECURE.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_ACTIVE_SECURE_ON;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_ACTIVE_SECURE_OFF;
+            }
+        } else if (CHANNEL_ENGINE.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_ENGINE_START;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_ENGINE_STOP;
+            }
+        } else if (CHANNEL_TRACKING.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_TRACKING_ON;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_TRACKING_OFF;
+            }
+        } else if (CHANNEL_PREHEATER.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_PREHEATER_ON;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_PREHEATER_OFF;
+            }
+        } else if (CHANNEL_MAINTENANCE.getName().equals(channelUID.getId())) {
+            if (OnOffType.ON == command) {
+                apiCommand = ApiCommands.CMD_MAINTENANCE_ON;
+            } else if (OnOffType.OFF == command) {
+                apiCommand = ApiCommands.CMD_MAINTENANCE_OFF;
+            }
+        } else if (CHANNEL_COMMAND.getName().equals(channelUID.getId())) {
+            apiCommand = ApiCommands.getByCommand(command.toString());
+        }
+
+        try {
+            localApi.sendCommand(deviceId, apiCommand);
+        } catch (ApiException e) {
+            throw new RuntimeException("Sending unknown command");
+        }
     }
 
     private void pollState() {

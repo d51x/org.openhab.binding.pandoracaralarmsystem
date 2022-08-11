@@ -167,7 +167,7 @@
             </options>
         </state>
     </channel-type>
-    <channel-type id="preheater" advanced="true">
+    <channel-type id="preheater" advanced="false">
         <item-type>Switch</item-type>
         <label>PreHeater</label>
         <description>PreHeater State (on/off)</description>
@@ -191,7 +191,7 @@
             </options>
         </state>
     </channel-type>
-    <channel-type id="stay_home" advanced="true">
+    <channel-type id="stay_home" advanced="false">
         <item-type>Switch</item-type>
         <label>Stay Home Mode</label>
         <description>Stay Home Mode State (on/off)</description>

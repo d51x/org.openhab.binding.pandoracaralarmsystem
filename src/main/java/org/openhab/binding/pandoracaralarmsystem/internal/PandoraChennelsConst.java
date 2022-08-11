@@ -77,6 +77,8 @@ public enum PandoraChennelsConst {
     CHANNEL_STAY_HOME("stay_home", CHANNEL_GROUP_OPTIONS),
     CHANNEL_DISABLE_REQUEST_METKA("disable_request_metka", CHANNEL_GROUP_OPTIONS),
     CHANNEL_DISABLE_UNLOCK_WITHOUT_METKA("disable_unlock_without_metka", CHANNEL_GROUP_OPTIONS),
+
+    CHANNEL_COMMAND("command", CHANNEL_GROUP_ACTIONS),
     ;
 
     private String channelId;
