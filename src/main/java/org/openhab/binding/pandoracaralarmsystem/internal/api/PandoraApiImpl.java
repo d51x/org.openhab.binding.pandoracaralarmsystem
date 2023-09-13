@@ -1,7 +1,8 @@
-/*
- * Copyright (c) 2010-2022 Contributors to the openHAB project
+/**
+ * Copyright (c) 2010-2023 Contributors to the openHAB project
  *
- * See the NOTICE file(s) distributed with this work for additional information.
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -9,12 +10,20 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  */
-
 package org.openhab.binding.pandoracaralarmsystem.internal.api;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.*;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChannelsConst.*;
+import static org.openhab.binding.pandoracaralarmsystem.internal.api.ApiCommands.CMD_UNKNOWN;
+
+import java.lang.reflect.Type;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
@@ -31,18 +40,9 @@ import org.openhab.core.thing.ThingStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Type;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.*;
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.*;
-import static org.openhab.binding.pandoracaralarmsystem.internal.api.ApiCommands.CMD_UNKNOWN;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * The {@link PandoraApiImpl} is the json Api methods for Pandora Base versions (DXL-series)
@@ -117,7 +117,7 @@ public class PandoraApiImpl implements PandoraApi {
     /**
      * Instantiates a new Pandora api.
      *
-     * @param handler    the handler
+     * @param handler the handler
      * @param httpClient the http client
      * @throws ApiException the api exception
      */
@@ -183,7 +183,7 @@ public class PandoraApiImpl implements PandoraApi {
         request.header(HttpHeader.ACCEPT, "*/*");
         request.header(HttpHeader.ACCEPT_ENCODING, null);
         request.header(HttpHeader.ACCEPT_ENCODING, "gzip, deflate, br");
-        //request.header(HttpHeader.CACHE_CONTROL, "no-cache");
+        // request.header(HttpHeader.CACHE_CONTROL, "no-cache");
         request.followRedirects(true);
     }
 
@@ -194,19 +194,18 @@ public class PandoraApiImpl implements PandoraApi {
         if (!params.isEmpty()) {
             url += "?" + params;
         }
-        httpClient.setConnectTimeout(60*1000);
+        httpClient.setConnectTimeout(60 * 1000);
         Request request = httpClient.newRequest(url);
         setHeaders(request);
         request.method(HttpMethod.GET);
-//        if (!sessionId.isEmpty()) {
-//            setCookie(request, "sid=" + sessionId);
-//        }
+        // if (!sessionId.isEmpty()) {
+        // setCookie(request, "sid=" + sessionId);
+        // }
         String errorReason;
         try {
             ContentResponse contentResponse = request.send();
             result.httpCode = contentResponse.getStatus();
-            if (result.httpCode == 200 ||
-                    result.httpCode >= 400 && result.httpCode < 500) {
+            if (result.httpCode == 200 || result.httpCode >= 400 && result.httpCode < 500) {
                 result.response = contentResponse.getContentAsString();
                 return result;
             } else {
@@ -229,6 +228,7 @@ public class PandoraApiImpl implements PandoraApi {
             throw new ApiException("Configuration is empty");
         }
     }
+
     @Override
     public ApiResponse sendPostRequest(String path, String data) throws ApiException {
         checkConfiguration();
@@ -236,8 +236,8 @@ public class PandoraApiImpl implements PandoraApi {
 
         Request request = httpClient.newRequest(apiUrl + path);
         setHeaders(request);
-        httpClient.setConnectTimeout(60*1000);
-        httpClient.setAddressResolutionTimeout(60*1000);
+        httpClient.setConnectTimeout(60 * 1000);
+        httpClient.setAddressResolutionTimeout(60 * 1000);
 
         Fields fields = new Fields();
         fields.add("login", handler.pandoraCASConfiguration.login);
@@ -251,13 +251,13 @@ public class PandoraApiImpl implements PandoraApi {
         try {
             ContentResponse contentResponse = request.send();
             result.httpCode = contentResponse.getStatus();
-            if (result.httpCode == 200 ||
-                    result.httpCode >= 400 && result.httpCode < 500) {
-                //TODO: refactor auth
-                Optional<HttpField> cookie = contentResponse.getHeaders().stream().filter(f->f.getName().equalsIgnoreCase("set-cookie")).findFirst();
+            if (result.httpCode == 200 || result.httpCode >= 400 && result.httpCode < 500) {
+                // TODO: refactor auth
+                Optional<HttpField> cookie = contentResponse.getHeaders().stream()
+                        .filter(f -> f.getName().equalsIgnoreCase("set-cookie")).findFirst();
                 if (cookie.isPresent()) {
                     String[] cookieData = cookie.get().getValue().split(";");
-                    String expire = Arrays.stream(cookieData).filter(f->f.contains("expires")).findFirst().orElse("");
+                    String expire = Arrays.stream(cookieData).filter(f -> f.contains("expires")).findFirst().orElse("");
                     if (!expire.isEmpty()) {
                         result.expires = Date.parse(expire.split("=")[1]);
                     }
@@ -289,15 +289,14 @@ public class PandoraApiImpl implements PandoraApi {
         ApiResponse result = new ApiResponse();
         Request request = httpClient.newRequest(apiUrl + path);
         setHeaders(request);
-        httpClient.setConnectTimeout(60*1000);
-        httpClient.setAddressResolutionTimeout(60*1000);
+        httpClient.setConnectTimeout(60 * 1000);
+        httpClient.setAddressResolutionTimeout(60 * 1000);
         request.content(new FormContentProvider(fields));
         request.method(HttpMethod.POST);
         try {
             ContentResponse contentResponse = request.send();
             result.httpCode = contentResponse.getStatus();
-            if (result.httpCode == 200 ||
-                    result.httpCode >= 400 && result.httpCode < 500) {
+            if (result.httpCode == 200 || result.httpCode >= 400 && result.httpCode < 500) {
                 result.response = contentResponse.getContentAsString();
                 return result;
             } else {
@@ -314,10 +313,11 @@ public class PandoraApiImpl implements PandoraApi {
         throw new ApiException(errorReason);
     }
 
-        private void setSession(String sid, Long expires) {
+    private void setSession(String sid, Long expires) {
         setSessionId(sid);
         setExpires(expires);
     }
+
     private void resetSession() {
         setSession("", 0L);
     }
@@ -325,7 +325,7 @@ public class PandoraApiImpl implements PandoraApi {
     private ApiAuthResponse auth() throws ApiException {
         checkConfiguration();
 
-        StringBuilder formData  = new StringBuilder();
+        StringBuilder formData = new StringBuilder();
         formData.append("login=");
         formData.append(handler.pandoraCASConfiguration.login);
         formData.append("&");
@@ -363,15 +363,13 @@ public class PandoraApiImpl implements PandoraApi {
                 resetSession();
             }
             ApiFailResponse failResponse = new Gson().fromJson(response.response, ApiFailResponse.class);
-            logger.error(String.format("Pandora API (%s) error: %d - %s",
-                    tag, response.httpCode, failResponse.errorText));
-            return new ApiException(String.format("Pandora API (%s) error: %d - %s",
-                    tag, response.httpCode, failResponse.errorText));
+            logger.error("Pandora API ({}) error: {} - {}", tag, response.httpCode, failResponse.errorText);
+            return new ApiException(
+                    String.format("Pandora API (%s) error: %d - %s", tag, response.httpCode, failResponse.errorText));
         } else {
-            logger.error(String.format("Pandora API (%s) error: %d - %s",
-                    tag, response.httpCode, response.response));
-            return new ApiException(String.format("Pandora API (%s) error: %d - %s",
-                    tag, response.httpCode, response.response));
+            logger.error("Pandora API ({}) error: {} - {}", tag, response.httpCode, response.response);
+            return new ApiException(
+                    String.format("Pandora API (%s) error: %d - %s", tag, response.httpCode, response.response));
         }
     }
 
@@ -383,7 +381,8 @@ public class PandoraApiImpl implements PandoraApi {
         try {
             ApiResponse response = sendGetRequest(API_PATH_DEVICES, "", getSessionId());
             if (response.httpCode == 200) {
-                Type listType = new TypeToken<ArrayList<ApiDevicesResponse>>(){}.getType();
+                Type listType = new TypeToken<ArrayList<ApiDevicesResponse>>() {
+                }.getType();
                 List<ApiDevicesResponse> apiDevicesResponseList = new Gson().fromJson(response.response, listType);
                 if (!apiDevicesResponseList.isEmpty()) {
                     lastGetDevicesTimestamp = Instant.now();
@@ -407,9 +406,8 @@ public class PandoraApiImpl implements PandoraApi {
             throw new ApiException("Configuration is null");
         }
 
-        String params = "ts=-1" +
-                "&from=" + Instant.now().minus(5, ChronoUnit.MINUTES).getEpochSecond() +
-                "&to=" + Instant.now().getEpochSecond();
+        String params = "ts=-1" + "&from=" + Instant.now().minus(5, ChronoUnit.MINUTES).getEpochSecond() + "&to="
+                + Instant.now().getEpochSecond();
 
         logger.debug("getUpdates: for {}", params);
 
@@ -417,11 +415,10 @@ public class PandoraApiImpl implements PandoraApi {
         if (response.httpCode == 200) {
             try {
                 return Optional.ofNullable(new Gson().fromJson(response.response, ApiUpdateResponse.class))
-                        .orElseThrow(()-> {
-                                logger.error("getUpdate: Pandora API (updates) returns empty result");
-                                return new RuntimeException("Pandora API (updates) returns empty result");
-                            }
-                        );
+                        .orElseThrow(() -> {
+                            logger.error("getUpdate: Pandora API (updates) returns empty result");
+                            return new RuntimeException("Pandora API (updates) returns empty result");
+                        });
             } catch (JsonSyntaxException e) {
                 logger.error("getUpdates: {}", e.getMessage());
                 throw new RuntimeException("Incorrect response: {}", e);
@@ -438,11 +435,11 @@ public class PandoraApiImpl implements PandoraApi {
      * @param updatesResponse the updates response
      */
     protected void processBridgeStates(ApiUpdateResponse updatesResponse) {
-       Object times = updatesResponse.time;
-       Object stats = updatesResponse.stats;
+        Object times = updatesResponse.time;
+        Object stats = updatesResponse.stats;
 
-       logger.debug("stats: {}", stats);
-       // handler.update(CHANNEL_DEVICE_STATUS, updatesResponse.);
+        logger.debug("stats: {}", stats);
+        // handler.update(CHANNEL_DEVICE_STATUS, updatesResponse.);
     }
 
     /**
@@ -484,7 +481,8 @@ public class PandoraApiImpl implements PandoraApi {
         try {
             ApiResponse response = sendPostRequest(API_PATH_CMD, formData);
             if (response.httpCode == 200) {
-                ApiCommandResponse apiCommandResponse = new Gson().fromJson(response.response, ApiCommandResponse.class);
+                ApiCommandResponse apiCommandResponse = new Gson().fromJson(response.response,
+                        ApiCommandResponse.class);
                 if (apiCommandResponse != null) {
                     return apiCommandResponse;
                 } else {

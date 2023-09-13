@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <thing:thing-descriptions bindingId="pandoracaralarmsystem"
-                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
-                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-    <channel-group-type id="device">
-        <label>Device Properties</label>
-        <description>Device properties</description>
-        <channels>
-            <channel id="name" typeId="name"/>
-            <channel id="model" typeId="model"/>
-            <channel id="firmware" typeId="firmware"/>
-            <channel id="balance" typeId="balance"/>
-            <channel id="gsm_level" typeId="gsm_level"/>
-            <channel id="status" typeId="status"/>
-            <channel id="movement" typeId="movement"/>
-        </channels>
-    </channel-group-type>
+	<channel-group-type id="device">
+		<label>Device Properties</label>
+		<description>Device properties</description>
+		<channels>
+			<channel id="name" typeId="name"/>
+			<channel id="model" typeId="model"/>
+			<channel id="firmware" typeId="firmware"/>
+			<channel id="balance" typeId="balance"/>
+			<channel id="gsm_level" typeId="gsm_level"/>
+			<channel id="status" typeId="status"/>
+			<channel id="movement" typeId="movement"/>
+		</channels>
+	</channel-group-type>
 
-    <channel-group-type id="telemetry">
-        <label>Device Telemetry</label>
-        <description>Device telemetry</description>
-        <channels>
-            <channel id="voltage" typeId="voltage"/>
-            <channel id="fuel" typeId="fuel"/>
-            <channel id="engine_temp" typeId="engine_temp"/>
-            <channel id="cabin_temp" typeId="cabin_temp"/>
-            <channel id="outer_temp" typeId="outer_temp"/>
-            <channel id="engine_rpm" typeId="engine_rpm"/>
-            <channel id="speed" typeId="speed"/>
-            <channel id="mileage" typeId="mileage"/>
-            <channel id="lat" typeId="lat"/>
-            <channel id="lon" typeId="lon"/>
-        </channels>
-    </channel-group-type>
+	<channel-group-type id="telemetry">
+		<label>Device Telemetry</label>
+		<description>Device telemetry</description>
+		<channels>
+			<channel id="voltage" typeId="voltage"/>
+			<channel id="fuel" typeId="fuel"/>
+			<channel id="engine_temp" typeId="engine_temp"/>
+			<channel id="cabin_temp" typeId="cabin_temp"/>
+			<channel id="outer_temp" typeId="outer_temp"/>
+			<channel id="engine_rpm" typeId="engine_rpm"/>
+			<channel id="speed" typeId="speed"/>
+			<channel id="mileage" typeId="mileage"/>
+			<channel id="lat" typeId="lat"/>
+			<channel id="lon" typeId="lon"/>
+		</channels>
+	</channel-group-type>
 
-    <channel-group-type id="states">
-        <label>Device State</label>
-        <description>Device states</description>
-        <channels>
-            <channel id="locked" typeId="locked"/>
-            <channel id="alarm" typeId="alarm"/>
-            <channel id="engine" typeId="engine"/>
-            <channel id="ignition" typeId="ignition"/>
-            <channel id="autostart_init" typeId="autostart_init"/>
-            <channel id="immo" typeId="immo"/>
-            <channel id="light" typeId="light"/>
-            <channel id="door_front_left" typeId="door_front_left"/>
-            <channel id="door_front_right" typeId="door_front_right"/>
-            <channel id="door_back_left" typeId="door_back_left"/>
-            <channel id="door_back_right" typeId="door_back_right"/>
-            <channel id="trunk" typeId="trunk"/>
-            <channel id="hood" typeId="hood"/>
-            <channel id="handbrake" typeId="handbrake"/>
-            <channel id="brakes" typeId="brakes"/>
-            <channel id="active_secure" typeId="active_secure"/>
-            <channel id="evaq" typeId="evaq"/>
-            <channel id="maintenance" typeId="maintenance"/>
-        </channels>
-    </channel-group-type>
+	<channel-group-type id="states">
+		<label>Device State</label>
+		<description>Device states</description>
+		<channels>
+			<channel id="locked" typeId="locked"/>
+			<channel id="alarm" typeId="alarm"/>
+			<channel id="engine" typeId="engine"/>
+			<channel id="ignition" typeId="ignition"/>
+			<channel id="autostart_init" typeId="autostart_init"/>
+			<channel id="immo" typeId="immo"/>
+			<channel id="light" typeId="light"/>
+			<channel id="door_front_left" typeId="door_front_left"/>
+			<channel id="door_front_right" typeId="door_front_right"/>
+			<channel id="door_back_left" typeId="door_back_left"/>
+			<channel id="door_back_right" typeId="door_back_right"/>
+			<channel id="trunk" typeId="trunk"/>
+			<channel id="hood" typeId="hood"/>
+			<channel id="handbrake" typeId="handbrake"/>
+			<channel id="brakes" typeId="brakes"/>
+			<channel id="active_secure" typeId="active_secure"/>
+			<channel id="evaq" typeId="evaq"/>
+			<channel id="maintenance" typeId="maintenance"/>
+		</channels>
+	</channel-group-type>
 
-    <channel-group-type id="options">
-        <label>Device options</label>
-        <description>Device options</description>
-        <channels>
-            <channel id="handsfree_lock" typeId="handsfree_lock"/>
-            <channel id="handsfree_unlock" typeId="handsfree_unlock"/>
-            <channel id="gsm" typeId="gsm"/>
-            <channel id="gps" typeId="gps"/>
-            <channel id="tracking" typeId="tracking"/>
-            <channel id="extsensor_alert_zone" typeId="extsensor_alert_zone"/>
-            <channel id="extsensor_main_zone" typeId="extsensor_main_zone"/>
-            <channel id="sensor_alert_zone" typeId="sensor_alert_zone"/>
-            <channel id="sensor_main_zone" typeId="sensor_main_zone"/>
-            <channel id="autostart" typeId="autostart"/>
-            <channel id="sms" typeId="sms"/>
-            <channel id="call" typeId="call"/>
-            <channel id="sound_alert" typeId="sound_alert"/>
-            <channel id="sound_main" typeId="sound_main"/>
-            <channel id="preheater" typeId="preheater"/>
-            <channel id="programm_preheat" typeId="programm_preheat"/>
-            <channel id="stay_home" typeId="stay_home"/>
-            <channel id="disable_request_metka" typeId="disable_request_metka"/>
-            <channel id="disable_unlock_without_metka" typeId="disable_unlock_without_metka"/>
-        </channels>
-    </channel-group-type>
-    <channel-group-type id="actions">
-        <label>Actions</label>
-        <channels>
-            <channel id="command" typeId="command"/>
-        </channels>
-    </channel-group-type>
+	<channel-group-type id="options">
+		<label>Device options</label>
+		<description>Device options</description>
+		<channels>
+			<channel id="handsfree_lock" typeId="handsfree_lock"/>
+			<channel id="handsfree_unlock" typeId="handsfree_unlock"/>
+			<channel id="gsm" typeId="gsm"/>
+			<channel id="gps" typeId="gps"/>
+			<channel id="tracking" typeId="tracking"/>
+			<channel id="extsensor_alert_zone" typeId="extsensor_alert_zone"/>
+			<channel id="extsensor_main_zone" typeId="extsensor_main_zone"/>
+			<channel id="sensor_alert_zone" typeId="sensor_alert_zone"/>
+			<channel id="sensor_main_zone" typeId="sensor_main_zone"/>
+			<channel id="autostart" typeId="autostart"/>
+			<channel id="sms" typeId="sms"/>
+			<channel id="call" typeId="call"/>
+			<channel id="sound_alert" typeId="sound_alert"/>
+			<channel id="sound_main" typeId="sound_main"/>
+			<channel id="preheater" typeId="preheater"/>
+			<channel id="programm_preheat" typeId="programm_preheat"/>
+			<channel id="stay_home" typeId="stay_home"/>
+			<channel id="disable_request_metka" typeId="disable_request_metka"/>
+			<channel id="disable_unlock_without_metka" typeId="disable_unlock_without_metka"/>
+		</channels>
+	</channel-group-type>
+	<channel-group-type id="actions">
+		<label>Actions</label>
+		<channels>
+			<channel id="command" typeId="command"/>
+		</channels>
+	</channel-group-type>
 </thing:thing-descriptions>

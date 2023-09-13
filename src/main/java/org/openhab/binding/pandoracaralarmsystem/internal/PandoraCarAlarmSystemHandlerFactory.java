@@ -1,7 +1,8 @@
-/*
- * Copyright (c) 2010-2022 Contributors to the openHAB project
+/**
+ * Copyright (c) 2010-2023 Contributors to the openHAB project
  *
- * See the NOTICE file(s) distributed with this work for additional information.
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +11,11 @@
  * SPDX-License-Identifier: EPL-2.0
  */
 package org.openhab.binding.pandoracaralarmsystem.internal;
+
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.THING_TYPE_BRIDGE_API;
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.THING_TYPE_PANDORA_CAS;
+
+import java.util.Set;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
@@ -26,11 +32,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.util.Set;
-
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.THING_TYPE_BRIDGE_API;
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarmSystemBindingConstants.THING_TYPE_PANDORA_CAS;
-
 /**
  * The {@link PandoraCarAlarmSystemHandlerFactory} is responsible for creating things and thing
  * handlers.
@@ -41,7 +42,8 @@ import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraCarAlarm
 @Component(configurationPid = "binding.pandoracaralarmsystem", service = ThingHandlerFactory.class)
 public class PandoraCarAlarmSystemHandlerFactory extends BaseThingHandlerFactory {
 
-    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Set.of(THING_TYPE_PANDORA_CAS, THING_TYPE_BRIDGE_API);
+    private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Set.of(THING_TYPE_PANDORA_CAS,
+            THING_TYPE_BRIDGE_API);
 
     private final PandoraApiFactory apiFactory;
 

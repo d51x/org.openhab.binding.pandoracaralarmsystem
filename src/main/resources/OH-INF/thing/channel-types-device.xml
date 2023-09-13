@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <thing:thing-descriptions bindingId="pandoracaralarmsystem"
-                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
-                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-    <channel-type id="name">
-        <item-type>String</item-type>
-        <label>Device Name</label>
-        <description>The Device Name of your System ID</description>
-        <category>text</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="model">
-        <item-type>String</item-type>
-        <label>Model</label>
-        <description>The Model of Pandora Car Alarm System</description>
-        <category>text</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="firmware">
-        <item-type>String</item-type>
-        <label>Firmware</label>
-        <description>The Firmware of Pandora Car Alarm System</description>
-        <category>text</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="balance">
-        <item-type>String</item-type>
-        <label>Device Balance</label>
-        <description>The available balance in account</description>
-        <category>piggybank</category>
-        <state pattern="%s %unit%" readOnly="true"/>
-    </channel-type>
-    <channel-type id="gsm_level" >
-        <item-type>Number</item-type>
-        <label>GSM Level</label>
-        <description>The GSM Level of Pandora Car Alarm System</description>
-        <category>qualityofservice</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="status">
-        <item-type>Switch</item-type>
-        <label>Device Status</label>
-        <description>Displays whether the device is online or not</description>
-        <category>if:simple-icons:statuspal</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">Online</option>
-                <option value="OFF">Offline</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="movement">
-        <item-type>Switch</item-type>
-        <label>Movement</label>
-        <description>Displays whether the vehicle is moving or not</description>
-        <category>if:carbon:movement</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">Yes</option>
-                <option value="OFF">No</option>
-            </options>
-        </state>
-    </channel-type>
+	<channel-type id="name">
+		<item-type>String</item-type>
+		<label>Device Name</label>
+		<description>The Device Name of your System ID</description>
+		<category>text</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="model">
+		<item-type>String</item-type>
+		<label>Model</label>
+		<description>The Model of Pandora Car Alarm System</description>
+		<category>text</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="firmware">
+		<item-type>String</item-type>
+		<label>Firmware</label>
+		<description>The Firmware of Pandora Car Alarm System</description>
+		<category>text</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="balance">
+		<item-type>String</item-type>
+		<label>Device Balance</label>
+		<description>The available balance in account</description>
+		<category>piggybank</category>
+		<state pattern="%s %unit%" readOnly="true"/>
+	</channel-type>
+	<channel-type id="gsm_level">
+		<item-type>Number</item-type>
+		<label>GSM Level</label>
+		<description>The GSM Level of Pandora Car Alarm System</description>
+		<category>qualityofservice</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="status">
+		<item-type>Switch</item-type>
+		<label>Device Status</label>
+		<description>Displays whether the device is online or not</description>
+		<category>if:simple-icons:statuspal</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">Online</option>
+				<option value="OFF">Offline</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="movement">
+		<item-type>Switch</item-type>
+		<label>Movement</label>
+		<description>Displays whether the vehicle is moving or not</description>
+		<category>if:carbon:movement</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">Yes</option>
+				<option value="OFF">No</option>
+			</options>
+		</state>
+	</channel-type>
 </thing:thing-descriptions>

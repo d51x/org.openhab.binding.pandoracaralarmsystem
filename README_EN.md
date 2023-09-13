@@ -2,7 +2,7 @@
 
 English Description | [Русское описание](README.md)
 
-![](docs/pandora.png)
+![](doc/pandora.png)
 
 The Binding uses the **unofficial API** used in the official Pandora website https://p-on.ru, and you will need to use the same Username and Password you use on the Pandora website to configure this Binding.
 
@@ -30,7 +30,7 @@ The default polling interval is 180 sec.
 
 You can change it in advance settings (checkbox). Minival interval is 15 sec.
 
-![](docs/bridge_config.png)
+![](doc/bridge_config.png)
 
 ## Thing Configuration
 
@@ -38,7 +38,7 @@ After configuring the Bridge create one or more Things.
 
 Each Thing should have a device Id. It is System Id in https://pro.p-on.ru
 
-![](docs/profile_en.png)
+![](doc/profile_en.png)
 
 
 ### Thing Configuration

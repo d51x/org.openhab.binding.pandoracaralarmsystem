@@ -1,230 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <thing:thing-descriptions bindingId="pandoracaralarmsystem"
-                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
-                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-    <channel-type id="handsfree_lock">
-        <item-type>Switch</item-type>
-        <label>HandsFree Lock</label>
-        <description>Enable lock by HandsFree</description>
-        <category>lock</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="handsfree_unlock">
-        <item-type>Switch</item-type>
-        <label>HandsFree UnLock</label>
-        <description>Enable unlock by HandsFree</description>
-        <category>lock</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="gsm" advanced="true">
-        <item-type>Switch</item-type>
-        <label>GSM State</label>
-        <description>GSM State (on/off)</description>
-        <category>Switch</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="gps" advanced="true">
-        <item-type>Switch</item-type>
-        <label>GPS State</label>
-        <description>GPS State (on/off)</description>
-        <category>if:ic:outline-gps-fixed</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="tracking" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Tracking State</label>
-        <description>Tracking State (on/off)</description>
-        <category>if:gis:route</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="extsensor_alert_zone" advanced="true">
-        <item-type>Switch</item-type>
-        <label>ExtSensor Alert Zone</label>
-        <description>ExtSensor Alert Zone state (on/off)</description>
-        <category>if:ic:round-sensors</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="extsensor_main_zone" advanced="true">
-        <item-type>Switch</item-type>
-        <label>ExtSensor Main Zone</label>
-        <description>ExtSensor Main Zone state (on/off)</description>
-        <category>if:ic:round-sensors</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="sensor_alert_zone" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Sensor Alert Zone</label>
-        <description>Sensor Alert Zone state (on/off)</description>
-        <category>if:ic:round-sensors</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="sensor_main_zone" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Sensor Main Zone</label>
-        <description>Sensor Main Zone state (on/off)</description>
-        <category>if:ic:round-sensors</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="autostart" advanced="true">
-        <item-type>Switch</item-type>
-        <label>AutoStart Programmed</label>
-        <description>Autostart Programmed State (on/off)</description>
-        <category>if:fluent:flash-auto-20-filled</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="sms" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Send SMS</label>
-        <description>Enable send SMS or not (on/off)</description>
-        <category>if:fa-solid:sms</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="call" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Voice Call</label>
-        <description>Enable Voice Call or not (on/off)</description>
-        <category>if:eva:phone-call-fill</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="sound_alert" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Sound Alert Alarm</label>
-        <description>Sound Alert Alarm (on/off)</description>
-        <category>if:bx:volume-mute</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="sound_main" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Sound Main Alarm</label>
-        <description>Sound Main Alarm (on/off)</description>
-        <category>if:entypo:sound-mute</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="preheater" advanced="true">
-        <item-type>Switch</item-type>
-        <label>PreHeater</label>
-        <description>PreHeater State (on/off)</description>
-        <category>if:material-symbols:water-heater-outline</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="programm_preheat" advanced="true">
-        <item-type>Switch</item-type>
-        <label>PreHeater Programmed</label>
-        <description>PreHeater Programmed State (on/off)</description>
-        <category>if:material-symbols:water-heater-outline</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="stay_home" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Stay Home Mode</label>
-        <description>Stay Home Mode State (on/off)</description>
-        <category>if:icon-park-twotone:homestay</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="disable_request_metka" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Disable Request Metka</label>
-        <description>Disable Request Metka State (on/off)</description>
-        <category>if:fluent:tag-dismiss-24-filled</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="disable_unlock_without_metka" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Disable Unlock w/Metka</label>
-        <description>Disable Unlock without Metka State (on/off)</description>
-        <category>if:fluent:tag-lock-16-filled</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
+	<channel-type id="handsfree_lock">
+		<item-type>Switch</item-type>
+		<label>HandsFree Lock</label>
+		<description>Enable lock by HandsFree</description>
+		<category>lock</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="handsfree_unlock">
+		<item-type>Switch</item-type>
+		<label>HandsFree UnLock</label>
+		<description>Enable unlock by HandsFree</description>
+		<category>lock</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="gsm" advanced="true">
+		<item-type>Switch</item-type>
+		<label>GSM State</label>
+		<description>GSM State (on/off)</description>
+		<category>Switch</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="gps" advanced="true">
+		<item-type>Switch</item-type>
+		<label>GPS State</label>
+		<description>GPS State (on/off)</description>
+		<category>if:ic:outline-gps-fixed</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="tracking" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Tracking State</label>
+		<description>Tracking State (on/off)</description>
+		<category>if:gis:route</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="extsensor_alert_zone" advanced="true">
+		<item-type>Switch</item-type>
+		<label>ExtSensor Alert Zone</label>
+		<description>ExtSensor Alert Zone state (on/off)</description>
+		<category>if:ic:round-sensors</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="extsensor_main_zone" advanced="true">
+		<item-type>Switch</item-type>
+		<label>ExtSensor Main Zone</label>
+		<description>ExtSensor Main Zone state (on/off)</description>
+		<category>if:ic:round-sensors</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="sensor_alert_zone" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Sensor Alert Zone</label>
+		<description>Sensor Alert Zone state (on/off)</description>
+		<category>if:ic:round-sensors</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="sensor_main_zone" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Sensor Main Zone</label>
+		<description>Sensor Main Zone state (on/off)</description>
+		<category>if:ic:round-sensors</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="autostart" advanced="true">
+		<item-type>Switch</item-type>
+		<label>AutoStart Programmed</label>
+		<description>Autostart Programmed State (on/off)</description>
+		<category>if:fluent:flash-auto-20-filled</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="sms" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Send SMS</label>
+		<description>Enable send SMS or not (on/off)</description>
+		<category>if:fa-solid:sms</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="call" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Voice Call</label>
+		<description>Enable Voice Call or not (on/off)</description>
+		<category>if:eva:phone-call-fill</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="sound_alert" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Sound Alert Alarm</label>
+		<description>Sound Alert Alarm (on/off)</description>
+		<category>if:bx:volume-mute</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="sound_main" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Sound Main Alarm</label>
+		<description>Sound Main Alarm (on/off)</description>
+		<category>if:entypo:sound-mute</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="preheater" advanced="false">
+		<item-type>Switch</item-type>
+		<label>PreHeater</label>
+		<description>PreHeater State (on/off)</description>
+		<category>if:material-symbols:water-heater-outline</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="programm_preheat" advanced="true">
+		<item-type>Switch</item-type>
+		<label>PreHeater Programmed</label>
+		<description>PreHeater Programmed State (on/off)</description>
+		<category>if:material-symbols:water-heater-outline</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="stay_home" advanced="false">
+		<item-type>Switch</item-type>
+		<label>Stay Home Mode</label>
+		<description>Stay Home Mode State (on/off)</description>
+		<category>if:icon-park-twotone:homestay</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="disable_request_metka" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Disable Request Metka</label>
+		<description>Disable Request Metka State (on/off)</description>
+		<category>if:fluent:tag-dismiss-24-filled</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="disable_unlock_without_metka" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Disable Unlock w/Metka</label>
+		<description>Disable Unlock without Metka State (on/off)</description>
+		<category>if:fluent:tag-lock-16-filled</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
 </thing:thing-descriptions>

@@ -1,7 +1,8 @@
-/*
- * Copyright (c) 2010-2022 Contributors to the openHAB project
+/**
+ * Copyright (c) 2010-2023 Contributors to the openHAB project
  *
- * See the NOTICE file(s) distributed with this work for additional information.
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -30,7 +31,7 @@ public class PandoraCarAlarmSystemBindingConstants {
     /**
      * The constant THING_TYPE_PANDORA_CAS.
      */
-// List of all Thing Type UIDs
+    // List of all Thing Type UIDs
     public static final ThingTypeUID THING_TYPE_PANDORA_CAS = new ThingTypeUID(BINDING_ID, THING_ID);
     /**
      * The constant THING_TYPE_BRIDGE_API.
@@ -66,5 +67,4 @@ public class PandoraCarAlarmSystemBindingConstants {
     public static final String CHANNEL_GROUP_STATES = "states";
     public static final String CHANNEL_GROUP_OPTIONS = "options";
     public static final String CHANNEL_GROUP_ACTIONS = "actions";
-
 }

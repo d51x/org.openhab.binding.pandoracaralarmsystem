@@ -1,7 +1,8 @@
-/*
- * Copyright (c) 2010-2022 Contributors to the openHAB project
+/**
+ * Copyright (c) 2010-2023 Contributors to the openHAB project
  *
- * See the NOTICE file(s) distributed with this work for additional information.
+ * See the NOTICE file(s) distributed with this work for additional
+ * information.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +11,10 @@
  * SPDX-License-Identifier: EPL-2.0
  */
 package org.openhab.binding.pandoracaralarmsystem.internal.handlers;
+
+import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChannelsConst.CHANNEL_DEVICE_STATUS;
+
+import java.util.Map;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
@@ -22,10 +27,6 @@ import org.openhab.core.types.Command;
 import org.openhab.core.types.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Map;
-
-import static org.openhab.binding.pandoracaralarmsystem.internal.PandoraChennelsConst.CHANNEL_DEVICE_STATUS;
 
 /**
  * The {@link PandoraCarAlarmThingHandler} is responsible for handling commands, which are
@@ -74,7 +75,8 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
         if (bridge == null) {
             return;
         }
-        PandoraCarAlarmSystemBridgeHandler pandoraBridgeHandler = (PandoraCarAlarmSystemBridgeHandler) bridge.getHandler();
+        PandoraCarAlarmSystemBridgeHandler pandoraBridgeHandler = (PandoraCarAlarmSystemBridgeHandler) bridge
+                .getHandler();
         if (pandoraBridgeHandler == null) {
             return;
         }
@@ -83,7 +85,8 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
 
     @Override
     public void initialize() {
-        @Nullable PandoraCarAlarmSystemConfiguration config = getConfigAs(PandoraCarAlarmSystemConfiguration.class);
+        @Nullable
+        PandoraCarAlarmSystemConfiguration config = getConfigAs(PandoraCarAlarmSystemConfiguration.class);
         bridge = getBridge();
         logger.debug("initializing Pandora Car Alarm System binding");
 
@@ -93,7 +96,7 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
         if (bridge == null) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, "No bridge is selected.");
         } else {
-            if (bridge.getHandler()  == null) {
+            if (bridge.getHandler() == null) {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.BRIDGE_UNINITIALIZED);
                 return;
             }
@@ -105,7 +108,7 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.BRIDGE_UNINITIALIZED);
             }
         }
-     }
+    }
 
     private void updateThingStatus(State state) {
         if (state.equals(OnOffType.ON)) {
@@ -121,7 +124,7 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
      * @param mapChannelState the map channel state
      */
     public void updateByMap(Map<String, State> mapChannelState) {
-        mapChannelState.forEach((channelId, state)->{
+        mapChannelState.forEach((channelId, state) -> {
             update(channelId, state);
         });
     }
@@ -130,7 +133,7 @@ public class PandoraCarAlarmThingHandler extends BaseThingHandler {
      * Update.
      *
      * @param channelId the channel id
-     * @param state     the state
+     * @param state the state
      */
     public void update(String channelId, State state) {
         if (isLinked(channelId)) {

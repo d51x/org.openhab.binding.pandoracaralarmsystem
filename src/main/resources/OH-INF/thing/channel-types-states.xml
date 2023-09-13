@@ -1,215 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <thing:thing-descriptions bindingId="pandoracaralarmsystem"
-                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
-                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
 
-    <channel-type id="locked">
-        <item-type>Switch</item-type>
-        <label>Locked</label>
-        <description>Displays protection status: Under protection / Protection removed</description>
-        <category>lock</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">Yes</option>
-                <option value="OFF">No</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="alarm">
-        <item-type>Switch</item-type>
-        <label>Alarm</label>
-        <description>Displays alarm status: Alarm detected or No alarm</description>
-        <category>alarm</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">Alarm detected</option>
-                <option value="OFF">No alarm</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="engine">
-        <item-type>Switch</item-type>
-        <label>Engine State</label>
-        <description>Displays engine status: Engine running / </description>
-        <category>if:mdi:engine</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="ignition" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Ignition State</label>
-        <description>The Ignition On or Off</description>
-        <category>if:arcticons:celighting</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="autostart_init" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Auto Start Init</label>
-        <description>The Auto Start initiation state (On or Off)</description>
-        <category>if:fluent:flash-auto-20-filled</category>
-        <state readOnly="true"/>
-    </channel-type>
+	<channel-type id="locked">
+		<item-type>Switch</item-type>
+		<label>Locked</label>
+		<description>Displays protection status: Under protection / Protection removed</description>
+		<category>lock</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">Yes</option>
+				<option value="OFF">No</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="alarm">
+		<item-type>Switch</item-type>
+		<label>Alarm</label>
+		<description>Displays alarm status: Alarm detected or No alarm</description>
+		<category>alarm</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">Alarm detected</option>
+				<option value="OFF">No alarm</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="engine">
+		<item-type>Switch</item-type>
+		<label>Engine State</label>
+		<description>Displays engine status: Engine running / </description>
+		<category>if:mdi:engine</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="ignition" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Ignition State</label>
+		<description>The Ignition On or Off</description>
+		<category>if:arcticons:celighting</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="autostart_init" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Auto Start Init</label>
+		<description>The Auto Start initiation state (On or Off)</description>
+		<category>if:fluent:flash-auto-20-filled</category>
+		<state readOnly="true"/>
+	</channel-type>
 
-    <channel-type id="immo">
-        <item-type>Switch</item-type>
-        <label>IMMO State</label>
-        <description>Displays engine is blocked or not</description>
-        <category>lock</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">Auto (Anti-Hi-Jack)</option>
-                <option value="OFF">Not blocked</option>
-            </options>
-        </state>
-    </channel-type>
+	<channel-type id="immo">
+		<item-type>Switch</item-type>
+		<label>IMMO State</label>
+		<description>Displays engine is blocked or not</description>
+		<category>lock</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">Auto (Anti-Hi-Jack)</option>
+				<option value="OFF">Not blocked</option>
+			</options>
+		</state>
+	</channel-type>
 
-    <channel-type id="light" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Light state</label>
-        <description>Light state (on/off)</description>
-        <category>light</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="door_front_left">
-        <item-type>Contact</item-type>
-        <label>Front Left Door</label>
-        <description>The Front Left Door state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="door_front_right">
-        <item-type>Contact</item-type>
-        <label>Front Right Door</label>
-        <description>The Front Right Door state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="door_back_left">
-        <item-type>Contact</item-type>
-        <label>Back Left Door</label>
-        <description>The Back Left Door state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="door_back_right">
-        <item-type>Contact</item-type>
-        <label>Back Right Door</label>
-        <description>The Back Right Door state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="trunk">
-        <item-type>Contact</item-type>
-        <label>Trunk</label>
-        <description>The Trunk state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="hood" advanced="true">
-        <item-type>Contact</item-type>
-        <label>Hood</label>
-        <description>The Hood state (Open/Closed)</description>
-        <category>if:mdi:car-door</category>
-        <state readOnly="true">
-            <options>
-                <option value="OPEN">Open</option>
-                <option value="CLOSED">Closed</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="handbrake" advanced="true">
-        <item-type>Switch</item-type>
-        <label>HandBrake</label>
-        <description>HandBrake State (on/off)</description>
-        <category>if:mdi:car-brake-parking</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="brakes" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Brakes</label>
-        <description>Brakes State (on/off)</description>
-        <category>if:mdi:car-brake-alert</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="active_secure" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Active Secure</label>
-        <description>Active Secure State (on/off)</description>
-        <category>if:wpf:security-checked</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
-    <channel-type id="evaq" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Evaquation</label>
-        <description>Evaquation State (on/off)</description>
-        <category>if:ic:baseline-car-repair</category>
-        <state readOnly="true"/>
-    </channel-type>
-    <channel-type id="maintenance" advanced="true">
-        <item-type>Switch</item-type>
-        <label>Maintenence Mode</label>
-        <description>Maintenence Mode State (on/off)</description>
-        <category>if:maki:car-repair</category>
-        <state readOnly="true">
-            <options>
-                <option value="ON">On</option>
-                <option value="OFF">Off</option>
-            </options>
-        </state>
-    </channel-type>
+	<channel-type id="light" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Light state</label>
+		<description>Light state (on/off)</description>
+		<category>light</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="door_front_left">
+		<item-type>Contact</item-type>
+		<label>Front Left Door</label>
+		<description>The Front Left Door state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="door_front_right">
+		<item-type>Contact</item-type>
+		<label>Front Right Door</label>
+		<description>The Front Right Door state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="door_back_left">
+		<item-type>Contact</item-type>
+		<label>Back Left Door</label>
+		<description>The Back Left Door state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="door_back_right">
+		<item-type>Contact</item-type>
+		<label>Back Right Door</label>
+		<description>The Back Right Door state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="trunk">
+		<item-type>Contact</item-type>
+		<label>Trunk</label>
+		<description>The Trunk state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="hood" advanced="true">
+		<item-type>Contact</item-type>
+		<label>Hood</label>
+		<description>The Hood state (Open/Closed)</description>
+		<category>if:mdi:car-door</category>
+		<state readOnly="true">
+			<options>
+				<option value="OPEN">Open</option>
+				<option value="CLOSED">Closed</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="handbrake" advanced="true">
+		<item-type>Switch</item-type>
+		<label>HandBrake</label>
+		<description>HandBrake State (on/off)</description>
+		<category>if:mdi:car-brake-parking</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="brakes" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Brakes</label>
+		<description>Brakes State (on/off)</description>
+		<category>if:mdi:car-brake-alert</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="active_secure" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Active Secure</label>
+		<description>Active Secure State (on/off)</description>
+		<category>if:wpf:security-checked</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
+	<channel-type id="evaq" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Evaquation</label>
+		<description>Evaquation State (on/off)</description>
+		<category>if:ic:baseline-car-repair</category>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="maintenance" advanced="true">
+		<item-type>Switch</item-type>
+		<label>Maintenence Mode</label>
+		<description>Maintenence Mode State (on/off)</description>
+		<category>if:maki:car-repair</category>
+		<state readOnly="true">
+			<options>
+				<option value="ON">On</option>
+				<option value="OFF">Off</option>
+			</options>
+		</state>
+	</channel-type>
 </thing:thing-descriptions>
