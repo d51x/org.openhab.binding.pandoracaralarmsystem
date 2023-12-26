@@ -34,6 +34,7 @@
 			<channel id="mileage_can" typeId="mileage_can"/>
 			<channel id="lat" typeId="lat"/>
 			<channel id="lon" typeId="lon"/>
+			<channel id="location" typeId="location"/>
 		</channels>
 	</channel-group-type>
 

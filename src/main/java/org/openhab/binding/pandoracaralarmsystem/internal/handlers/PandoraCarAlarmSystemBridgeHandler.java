@@ -28,10 +28,7 @@ import org.openhab.binding.pandoracaralarmsystem.internal.api.*;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.record.StatRecord;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiDevicesResponse;
 import org.openhab.binding.pandoracaralarmsystem.internal.api.response.ApiUpdateResponse;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.OnOffType;
-import org.openhab.core.library.types.OpenClosedType;
-import org.openhab.core.library.types.StringType;
+import org.openhab.core.library.types.*;
 import org.openhab.core.thing.*;
 import org.openhab.core.thing.binding.BaseBridgeHandler;
 import org.openhab.core.thing.binding.ThingHandler;
@@ -328,6 +325,8 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
             mapChannelsState.put(CHANNEL_MILEAGE_CAN.getName(), new DecimalType(stat.mileageCAN.longValue()));
             mapChannelsState.put(CHANNEL_LATITUDE.getName(), new DecimalType(stat.lat.floatValue()));
             mapChannelsState.put(CHANNEL_LONGITUDE.getName(), new DecimalType(stat.lon.floatValue()));
+            mapChannelsState.put(CHANNEL_LOCATION.getName(),
+                    new PointType(new DecimalType(stat.lat.floatValue()), new DecimalType(stat.lon.floatValue())));
 
             // bits
             long bitStates = stat.bitStates.longValue();

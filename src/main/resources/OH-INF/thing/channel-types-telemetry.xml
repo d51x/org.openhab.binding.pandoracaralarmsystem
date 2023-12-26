@@ -81,4 +81,11 @@
 		<category>if:bxs:map-pin</category>
 		<state pattern="%.6f" readOnly="true"/>
 	</channel-type>
+	<channel-type id="location" advanced="true">
+		<item-type>Location</item-type>
+		<label>Location</label>
+		<description>The Location (coordinates)</description>
+		<category>if:bxs:map-pin</category>
+		<!-- <state pattern="%.6f" readOnly="true"/> -->
+	</channel-type>
 </thing:thing-descriptions>

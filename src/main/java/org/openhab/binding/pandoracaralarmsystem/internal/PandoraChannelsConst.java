@@ -96,6 +96,10 @@ public enum PandoraChannelsConst {
     CHANNEL_LONGITUDE("lon", CHANNEL_GROUP_TELEMETRY),
 
     /**
+     * Channel location pandora channels const.
+     */
+    CHANNEL_LOCATION("location", CHANNEL_GROUP_TELEMETRY),
+    /**
      * Channel locked pandora channels const.
      */
     CHANNEL_LOCKED("locked", CHANNEL_GROUP_STATES),
