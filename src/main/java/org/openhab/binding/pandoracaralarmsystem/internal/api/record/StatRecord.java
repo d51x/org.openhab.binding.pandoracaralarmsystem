@@ -116,13 +116,13 @@ public class StatRecord {
     /**
      * The Mileage.
      */
-    public Long mileage;
+    public Float mileage;
 
     /**
      * The Mileage can.
      */
     @SerializedName("mileage_CAN")
-    public Long mileageCAN;
+    public Float mileageCAN;
 
     /**
      * The Metka.

@@ -324,7 +324,7 @@ public class PandoraCarAlarmSystemBridgeHandler extends BaseBridgeHandler {
                     new DecimalType(stat.outerTemperature.longValue()));
             mapChannelsState.put(CHANNEL_FUEL.getName(), new DecimalType(stat.fuel.longValue()));
             mapChannelsState.put(CHANNEL_SPEED.getName(), new DecimalType(stat.speed.longValue()));
-            mapChannelsState.put(CHANNEL_MILEAGE.getName(), new DecimalType(stat.mileage.longValue()));
+            mapChannelsState.put(CHANNEL_MILEAGE.getName(), new DecimalType(stat.mileage.floatValue()));
             mapChannelsState.put(CHANNEL_LATITUDE.getName(), new DecimalType(stat.lat.floatValue()));
             mapChannelsState.put(CHANNEL_LONGITUDE.getName(), new DecimalType(stat.lon.floatValue()));
 
