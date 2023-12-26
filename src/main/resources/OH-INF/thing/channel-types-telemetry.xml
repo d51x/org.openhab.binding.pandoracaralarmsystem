@@ -55,8 +55,15 @@
 	</channel-type>
 	<channel-type id="mileage" advanced="true">
 		<item-type>Number</item-type>
-		<label>Mileage</label>
-		<description>The Mileage of the Device</description>
+		<label>Mileage GPS</label>
+		<description>The Mileage of the Device by GPS</description>
+		<category>if:tabler:route</category>
+		<state pattern="%d" readOnly="true"/>
+	</channel-type>
+	<channel-type id="mileage_can" advanced="true">
+		<item-type>Number</item-type>
+		<label>Mileage CAN</label>
+		<description>The Mileage of the Device by CAN Bus</description>
 		<category>if:tabler:route</category>
 		<state pattern="%d" readOnly="true"/>
 	</channel-type>

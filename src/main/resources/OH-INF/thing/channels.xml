@@ -31,6 +31,7 @@
 			<channel id="engine_rpm" typeId="engine_rpm"/>
 			<channel id="speed" typeId="speed"/>
 			<channel id="mileage" typeId="mileage"/>
+			<channel id="mileage_can" typeId="mileage_can"/>
 			<channel id="lat" typeId="lat"/>
 			<channel id="lon" typeId="lon"/>
 		</channels>
